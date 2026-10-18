@@ -1,0 +1,1378 @@
+/* ============================================================
+   PORTAFOLIO DE CARLOTA CORZO
+   Todas las medidas vienen de tu Figma (frame de 1875px).
+
+   Índice:
+     1. La escala        cómo el diseño se adapta a cada pantalla
+     2. Variables        colores y medidas
+     3. Reseteo
+     4. Base
+     5. Navegación
+     6. Hero
+     7. Marquee          el carrusel infinito
+     8. Capabilities
+     9. Botón
+    10. Pie de página
+    11. Tablet y celular
+    12. Menos movimiento
+   ============================================================ */
+
+
+/* ------------------------------------------------------------
+   1. LA ESCALA
+   Esto es lo que hace que tu diseño se vea igual en cualquier
+   pantalla, y vale la pena entenderlo porque es lo que resuelve
+   el problema de "en Figma se ve distinto".
+
+   Diseñaste a 1875px. Casi ninguna pantalla tiene 1875px.
+   Hay dos maneras de resolverlo:
+
+   a) Medidas fijas: 36px son 36px siempre. En una pantalla de
+      1400 el texto ocupa proporcionalmente más y tu composición
+      se rompe.
+
+   b) Medidas proporcionales: todo se achica junto, manteniendo
+      las proporciones exactas. Es lo que hace Figma cuando te
+      muestra el canvas al 75%.
+
+   Elegimos la (b). El truco: en vez de escribir "36px" en cada
+   regla, escribimos "2.25rem". Un "rem" es el tamaño base de la
+   página, y acá ese tamaño base no es fijo: es un porcentaje
+   del ancho de la ventana.
+
+     16 / 1875 × 100 = 0.8533vw
+
+   Entonces a 1875px de ancho, 1rem = 16px y todo mide lo de tu
+   Figma. A 1400px, 1rem = 11.9px y todo mide un 75%, con las
+   mismas proporciones.
+
+   El clamp() le pone techo y piso: no crece más allá de tu
+   diseño y no se achica hasta volverse ilegible.
+   ------------------------------------------------------------ */
+/* ⬇️ ESTA LÍNEA CONTROLA EL TAMAÑO DE TODO EL SITIO.
+
+   El Figma está hecho a 16. Acá va 9.6, que es el 60%, porque
+   es el tamaño que elegiste mirándolo en pantalla.
+
+   Sube o baja ese número y cambia TODO junto, sin deformar nada:
+   textos, círculo, cuadros del carrusel, separaciones, botón.
+     16    = tu Figma a tamaño real
+     12.8  = 80%, lo que elegiste
+     11.2  = 70%
+     9.6   = 60%                                                  */
+html {
+  font-size: 12.8px;
+}
+
+/* La tabla de conversión, por si quieres tocar algo:
+     8px  = 0.5rem        80px  = 5rem
+    10px  = 0.625rem     107px  = 6.6875rem
+    16px  = 1rem         128px  = 8rem
+    24px  = 1.5rem       160px  = 10rem
+    32px  = 2rem         192px  = 12rem
+    36px  = 2.25rem      319px  = 19.9375rem
+    39px  = 2.4375rem    323px  = 20.1875rem
+    40px  = 2.5rem       444px  = 27.75rem
+    44px  = 2.75rem      690px  = 43.125rem
+    48px  = 3rem         749px  = 46.8125rem
+   Para convertir: el valor en px dividido 16. */
+
+
+/* ------------------------------------------------------------
+   2. VARIABLES
+   ------------------------------------------------------------ */
+:root {
+  --tinta:  #000000;   /* Figma: negro puro en los textos */
+  --papel:  #FFFFFF;
+  --gris:   #828282;   /* Figma: los textos del pie */
+  --hueco:  #D9D9D9;   /* Figma: los espacios sin imagen */
+  --rosa:   #EE588F;   /* Figma: el acento */
+
+  --ancho:  117.1875rem;  /* 1875px, tu frame */
+
+  /* El aire a los lados. Lo elegiste mirándolo en pantalla.
+     En tu Figma eran 80px, pero a pantalla completa quedaba
+     demasiado pegado a los bordes. Va en px fijos a propósito:
+     así no cambia cuando cambias el tamaño del sitio.
+     El carrusel NO lo usa: sus piezas tocan el borde. */
+  --margen: 200px;
+  --sombra: 0 0.0625rem 1.25rem rgba(0, 0, 0, 0.05);  /* la de nav y pie */
+}
+
+
+/* ------------------------------------------------------------
+   3. RESETEO
+   ------------------------------------------------------------ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+
+/* ------------------------------------------------------------
+   4. BASE
+   ------------------------------------------------------------ */
+body {
+  font-family: 'Inter', -apple-system, system-ui, sans-serif;
+  font-size: 1.5rem;       /* 24px, que es tu tamaño de texto base */
+  line-height: 1.2083;     /* 29/24, el interlineado de tu Figma */
+  color: var(--tinta);
+  background: var(--papel);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* La página entera, apilada. El gap de 192px es el del
+   Frame 36 de tu Figma, el que separa nav, contenido y pie. */
+/* La página ocupa todo el ancho de la ventana, sin franjas
+   blancas a los lados. Los tamaños son los de tu Figma al 60%,
+   pero la maquetación se estira a la pantalla que haya. */
+.pagina {
+  display: flex;
+  flex-direction: column;
+  gap: 12rem;              /* 192px */
+  width: 100%;
+  min-height: 100vh;       /* al menos tan alta como la ventana */
+}
+
+/* El cuerpo crece para ocupar lo que sobre, y así el pie queda
+   pegado abajo aunque la página tenga poco contenido. Sin esto,
+   en Contact el pie quedaba a media pantalla con un hueco
+   blanco debajo. */
+.cuerpo { flex: 1; }
+
+
+/* ------------------------------------------------------------
+   5. NAVEGACIÓN
+   Figma, Frame 2: 1875×107, padding 24px 80px, sombra suave.
+   ------------------------------------------------------------ */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 6.6875rem;       /* 107px */
+  padding: 1.5rem var(--margen);   /* 24px 80px */
+  background: var(--papel);
+  box-shadow: var(--sombra);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* El logo. Siempre lleva al home, en todas las páginas. */
+.nav-logo {
+  font-family: 'Mansalva', cursive;
+  font-weight: 400;
+  font-size: 2rem;         /* 32px */
+  line-height: 2.1875rem;  /* 35px */
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 8rem;               /* 128px */
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 1.5rem;       /* 24px */
+  line-height: 1.8125rem;  /* 29px */
+  transition: color 0.18s;
+}
+
+.nav-links a:hover { color: var(--rosa); }
+
+/* .activo marca la página en la que estás */
+.nav-links a.activo { color: var(--rosa); }
+
+
+/* ------------------------------------------------------------
+   EL CUERPO
+   Figma, Frame 19: las tres secciones con 160px entre ellas.
+   ------------------------------------------------------------ */
+.cuerpo {
+  display: flex;
+  flex-direction: column;
+  gap: 10rem;              /* 160px */
+}
+
+
+/* ------------------------------------------------------------
+   6. HERO
+   Figma, Frame 16: alto 444, padding lateral 80, gap 323,
+   contenido centrado.
+   ------------------------------------------------------------ */
+/* El texto a la izquierda y el círculo a la derecha, separados
+   por todo el ancho disponible. En tu Figma iban centrados con
+   323px entre medio, pero eso era a 1875 justos; en una pantalla
+   más ancha quedarían los dos apiñados en el medio. */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20.1875rem;         /* 323px, el mínimo entre los dos */
+  height: 27.75rem;        /* 444px */
+  padding: 0 var(--margen);
+}
+
+/* La columna izquierda: la frase y, debajo, el botón */
+.hero-izq {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;   /* el botón no se estira */
+  gap: 3rem;
+  flex-shrink: 0;
+}
+
+.hero-texto {
+  width: 46.8125rem;       /* 749px, es lo que decide dónde corta */
+  font-size: 2.25rem;      /* 36px */
+  line-height: 2.75rem;    /* 44px */
+}
+
+/* La negrita y el rosa van por dentro del párrafo */
+.hero-texto strong { font-weight: 600; }
+.acento { color: var(--rosa); }
+
+/* El círculo donde irá tu ilustración */
+.hero-circulo {
+  width: 27.75rem;         /* 444px */
+  height: 27.75rem;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--hueco);
+  overflow: hidden;
+}
+
+.hero-circulo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;       /* llena sin deformarse */
+}
+
+
+/* ------------------------------------------------------------
+   7. EL MARQUEE
+   Figma, Frame 17: piezas de 319×319, separadas 39px, sin
+   padding lateral (tocan los bordes de la pantalla).
+
+   Cómo funciona el bucle:
+   1. La fila está escrita DOS VECES, idéntica
+   2. La animación mueve la pista la mitad de su ancho total
+   3. Al llegar vuelve al inicio de golpe, y como la segunda
+      copia es igual a la primera, el salto cae donde la imagen
+      es la misma y el ojo no lo nota
+
+   Por eso la separación va con margin-right y no con gap: con
+   gap, la última pieza no lleva separación y la cuenta del 50%
+   se desajusta un poco, lo justo para que el salto se vea.
+   ------------------------------------------------------------ */
+.marquee {
+  height: 19.9375rem;      /* 319px */
+  overflow: hidden;
+}
+
+.marquee-pista {
+  display: flex;
+  width: max-content;
+  animation: desliza 60s linear infinite;
+}
+
+/* Sube el 60s para que vaya más lento, bájalo para más rápido */
+
+@keyframes desliza {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* Se pausa al pasar el mouse, para poder mirar una pieza */
+.marquee:hover .marquee-pista { animation-play-state: paused; }
+
+/* Cada pieza es un enlace: al hacer clic lleva a su proyecto.
+   Antes eran bloques muertos y nada avisaba que se podía. */
+.marquee-item {
+  display: block;
+  width: 19.9375rem;       /* 319px */
+  height: 19.9375rem;
+  margin-right: 2.4375rem; /* 39px */
+  flex-shrink: 0;
+  background: var(--hueco);
+  overflow: hidden;
+  transition: opacity 0.25s;
+}
+
+.marquee-item:hover { opacity: 0.8; }
+
+.marquee-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* ------------------------------------------------------------
+   8. CAPABILITIES
+   Figma, Frame 18: alto 258, padding lateral 80, el bloque
+   pegado a la derecha. Frame 6: ancho 690, gap 24 entre partes.
+   ------------------------------------------------------------ */
+.capacidades {
+  display: flex;
+  justify-content: flex-end;   /* pegado a la derecha */
+  align-items: center;
+  height: 16.125rem;           /* 258px */
+  padding: 0 var(--margen);
+}
+
+.capacidades-bloque {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;                 /* 24px */
+  width: 43.125rem;            /* 690px */
+}
+
+/* El rótulo */
+.rotulo {
+  font-weight: 500;
+  font-size: 1.5rem;           /* 24px */
+  line-height: 1.8125rem;      /* 29px */
+}
+
+.capacidades p {
+  font-size: 2rem;             /* 32px */
+  line-height: 2.4375rem;      /* 39px */
+}
+
+/* La separación entre las dos frases, dentro del mismo bloque */
+.capacidades .frase-1 { margin-bottom: 1rem; }  /* 16px */
+
+
+/* ------------------------------------------------------------
+   9. BOTÓN
+   Figma, Frame 5: 247×48, padding 8px 40px, borde 1.5 rosa,
+   radio 40.
+   ------------------------------------------------------------ */
+.boton {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 3rem;                /* 48px */
+  padding: 0.5rem 2.5rem;      /* 8px 40px */
+  border: 1.5px solid var(--rosa);
+  border-radius: 2.5rem;       /* 40px */
+  color: var(--rosa);
+  font-weight: 500;
+  font-size: 1.5rem;           /* 24px */
+  line-height: 1.8125rem;      /* 29px */
+  white-space: nowrap;         /* que el texto no se parta */
+  transition: background 0.18s, color 0.18s;
+}
+
+.boton:hover {
+  background: var(--rosa);
+  color: var(--papel);
+}
+
+/* La flechita que va dentro de algunos botones. Se separa un
+   poco al pasar el mouse, el mismo gesto que el navegador de
+   proyectos y la flecha de volver. */
+.boton .flecha {
+  display: inline-block;
+  margin-left: 0.75rem;
+  transition: margin-left 0.18s;
+}
+
+.boton:hover .flecha { margin-left: 1.25rem; }
+
+
+/* ------------------------------------------------------------
+   10. PIE DE PÁGINA
+   Figma, Frame 3: idéntico a la nav, con los textos en gris.
+   ------------------------------------------------------------ */
+.pie {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 6.6875rem;           /* 107px */
+  padding: 1.5rem var(--margen);
+  background: var(--papel);
+  color: var(--gris);
+
+  /* La sombra va hacia ARRIBA, al revés que la de la nav.
+     Una sombra siempre se proyecta hacia el contenido que está
+     al otro lado: la nav la tira hacia abajo, el pie hacia
+     arriba. Con la misma de la nav quedaba una franja gris
+     colgando debajo del pie. */
+  box-shadow: 0 -0.0625rem 1.25rem rgba(0, 0, 0, 0.05);
+}
+
+.pie a {
+  font-size: 1.5rem;
+  line-height: 1.8125rem;
+  transition: color 0.18s;
+}
+
+.pie a:hover { color: var(--rosa); }
+
+.pie-redes {
+  display: flex;
+  align-items: center;
+  gap: 8rem;                   /* 128px */
+  list-style: none;
+}
+
+
+/* ============================================================
+   LA PÁGINA WORK
+   ============================================================ */
+
+
+/* ------------------------------------------------------------
+   W1. LA CABECERA
+   El rótulo y el titular a la izquierda; el filtro a la derecha.
+   ------------------------------------------------------------ */
+.work-cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;   /* alineados por abajo, no por arriba */
+  gap: 5rem;
+  padding: 0 var(--margen);
+}
+
+.work-titular {
+  margin-top: 1.5rem;      /* 24px */
+  max-width: 37rem;        /* fuerza el corte en dos líneas */
+  font-size: 2.5rem;       /* 40px */
+  line-height: 1.22;
+  font-weight: 400;        /* el titular NO va en negrita */
+}
+
+
+/* ------------------------------------------------------------
+   W2. LOS CONTROLES DEL FILTRO
+   ------------------------------------------------------------ */
+.filtros {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-shrink: 0;          /* que no se aplasten */
+}
+
+/* El desplegable. Los navegadores le ponen un estilo propio
+   bastante feo, así que lo apagamos con appearance: none y
+   dibujamos la flechita nosotros, con una imagen de fondo. */
+.filtro-select {
+  appearance: none;
+  -webkit-appearance: none;
+  font-family: inherit;
+  font-size: 1.5rem;       /* 24px */
+  color: var(--tinta);
+  background-color: var(--papel);
+  border: 1px solid #CFCFCF;
+  border-radius: 2.5rem;   /* la cápsula */
+  padding: 0.6rem 3.5rem 0.6rem 1.75rem;  /* el hueco de la derecha es para la flecha */
+  cursor: pointer;
+
+  /* La flechita, dibujada como un SVG dentro del propio CSS */
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9' fill='none'><path d='M1 1L7 7L13 1' stroke='%23333' stroke-width='1.6' stroke-linecap='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 1.5rem center;
+  transition: border-color 0.18s;
+}
+
+.filtro-select:hover { border-color: var(--rosa); }
+
+/* Cuando hay un filtro puesto, el control se pone rosa.
+   La clase la agrega el JavaScript. */
+.filtro-select.activo {
+  border-color: var(--rosa);
+  color: var(--rosa);
+}
+
+/* "Clear filters" es un botón, no un enlace: ejecuta una acción
+   en la página, no lleva a otro lado. Pero se ve como texto. */
+.limpiar {
+  font-family: inherit;
+  font-size: 1.5rem;
+  color: var(--gris);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.18s;
+}
+
+.limpiar:hover { color: var(--rosa); }
+
+
+/* ------------------------------------------------------------
+   W3. LA GRILLA DE PROYECTOS
+   Tres columnas. Es la parte que más vas a tocar.
+   ------------------------------------------------------------ */
+.grilla {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5rem 3.5rem;        /* 80px entre filas, 56px entre columnas */
+  padding: 0 var(--margen);
+}
+
+.pieza {
+  display: block;
+}
+
+/* Cuando una pieza no pasa el filtro, el JavaScript le pone
+   esta clase y desaparece de la grilla. Las demás se reacomodan
+   solas, que es la gracia de usar grid. */
+.pieza.oculta { display: none; }
+
+.pieza-imagen {
+  aspect-ratio: 1 / 1;     /* siempre cuadrada */
+  background: var(--hueco);
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+  transition: opacity 0.25s;
+}
+
+.pieza:hover .pieza-imagen { opacity: 0.82; }
+
+.pieza-imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;       /* llena sin deformarse */
+}
+
+.pieza-titulo {
+  font-size: 1.5rem;       /* 24px */
+  font-weight: 500;
+  line-height: 1.2;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #D5D5D5;   /* la línea fina de tu Figma */
+}
+
+.pieza-tags {
+  margin-top: 0.5rem;
+  font-size: 1rem;         /* 16px */
+  color: var(--gris);
+}
+
+/* El aviso que aparece si el filtro no encuentra nada */
+.sin-resultados {
+  grid-column: 1 / -1;     /* ocupa las tres columnas */
+  padding: 4rem 0;
+  font-size: 1.5rem;
+  color: var(--gris);
+}
+
+
+/* ============================================================
+   LA PÁGINA ABOUT
+   ============================================================ */
+
+
+/* ------------------------------------------------------------
+   A1. EL BLOQUE DE PRESENTACIÓN
+   Misma estructura que el hero de la portada: texto a la
+   izquierda, círculo a la derecha. Acá el círculo es tu foto.
+   ------------------------------------------------------------ */
+.about-intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12rem;
+  padding: 0 var(--margen);
+}
+
+.about-texto {
+  max-width: 46.8125rem;   /* 749px, el mismo ancho del hero */
+}
+
+/* El saludo va entero en Mansalva y en rosa, de un solo tamaño.
+   Es una frase cerrada, no el arranque de la que sigue, y por
+   eso lleva el espacio de un párrafo completo debajo. */
+/* ⚠️ Esta regla la comparte con el "Let's talk." de Contact.
+   Son los dos saludos grandes del sitio y tienen que verse
+   igual, así que se declaran juntos a propósito: por separado
+   se desincronizaron una vez y cada uno acabó con un tamaño
+   distinto en pantalla angosta. */
+.about-saludo,
+.contacto-titular {
+  font-family: 'Mansalva', cursive;
+  font-size: 3.90625rem;   /* 50px, lo elegiste a ojo */
+  font-weight: 400;
+  line-height: 1.15;
+  margin-bottom: 2rem;
+  color: var(--rosa);
+}
+
+.about-texto p {
+  font-size: 1.5rem;       /* 24px */
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.about-texto p:last-child { margin-bottom: 0; }
+
+/* El círculo de la foto */
+.about-foto {
+  width: 27.75rem;         /* 444px, igual que el de la portada */
+  height: 27.75rem;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--hueco);
+  overflow: hidden;
+}
+
+.about-foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* ------------------------------------------------------------
+   A2. LAS LÍNEAS SEPARADORAS Y LOS TÍTULOS DE SECCIÓN
+   ------------------------------------------------------------ */
+.separador {
+  height: 1px;
+  background: #E0E0E0;
+  border: none;
+  margin: 0 var(--margen);
+}
+
+.titulo-seccion {
+  text-align: center;
+  font-size: 1.5rem;       /* 24px */
+  font-weight: 500;
+  margin-bottom: 3rem;
+}
+
+
+/* ------------------------------------------------------------
+   A3. LA LÍNEA DE TIEMPO
+
+   Va de izquierda a derecha en el sentido del tiempo: lo más
+   antiguo a la izquierda, lo actual a la derecha. En tu Figma
+   estaba al revés, y un eje horizontal se lee como que el tiempo
+   avanza hacia la derecha.
+
+   La línea rosa es un pseudo-elemento: un trocito de decoración
+   que se dibuja desde el CSS, sin tener que ponerlo en el HTML.
+   ------------------------------------------------------------ */
+.timeline {
+  position: relative;
+  display: grid;
+  grid-auto-flow: column;        /* los puestos, en fila */
+  grid-auto-columns: 1fr;        /* todos del mismo ancho */
+  padding: 0 var(--margen);
+  gap: 2rem;
+}
+
+/* La línea horizontal que los une */
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 0.4375rem;                /* a la altura del centro de los puntos */
+  left: calc(var(--margen) + 1rem);
+  right: calc(var(--margen) + 1rem);
+  height: 1.5px;
+  background: var(--rosa);
+}
+
+.puesto { position: relative; }
+
+/* El puntito rosa de cada puesto */
+.puesto::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0.875rem;
+  height: 0.875rem;
+  border-radius: 50%;
+  background: var(--rosa);
+}
+
+.puesto-datos {
+  padding-top: 2.5rem;           /* deja aire debajo del punto */
+  border-top: 1px solid transparent;
+}
+
+.puesto h3 {
+  font-size: 1.5rem;             /* 24px */
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.puesto .fecha,
+.puesto .rol {
+  display: block;
+  font-size: 1.125rem;           /* 18px */
+  color: var(--gris);
+  line-height: 1.45;
+}
+
+
+/* ------------------------------------------------------------
+   A4. LAS HERRAMIENTAS
+   Seis, en dos filas, desplazadas entre sí para que no se lean
+   como una tabla. Es el zigzag de tu Figma.
+   ------------------------------------------------------------ */
+.tools {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  padding: 0 var(--margen);
+  text-align: center;
+  font-size: 1.5rem;             /* 24px */
+}
+
+/* El desplazamiento que arma el zigzag. Sube o baja estos
+   valores para abrirlo o cerrarlo. */
+.tools li:nth-child(1) { transform: translateX(-3rem); }
+.tools li:nth-child(3) { transform: translateX(3rem); }
+.tools li:nth-child(4) { transform: translate(-1.5rem, 1.5rem); }
+.tools li:nth-child(5) { transform: translateY(1.5rem); }
+.tools li:nth-child(6) { transform: translate(1.5rem, 1.5rem); }
+
+.tools { list-style: none; padding-bottom: 2rem; }
+
+
+/* ============================================================
+   LA PÁGINA CONTACT
+   ============================================================ */
+
+
+/* ------------------------------------------------------------
+   C1. EL BLOQUE DE ARRIBA
+   Titular y bajada a la izquierda, formulario a la derecha.
+   ------------------------------------------------------------ */
+.contacto-intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10rem;
+  padding: 0 var(--margen);
+}
+
+.contacto-texto { max-width: 37rem; }
+
+.contacto-texto p {
+  font-size: 1.5rem;       /* 24px */
+  line-height: 1.5;
+}
+
+
+/* ------------------------------------------------------------
+   C2. EL FORMULARIO
+   ------------------------------------------------------------ */
+.formulario {
+  width: 43.125rem;        /* 690px, el mismo ancho de Capabilities */
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.campo label {
+  font-size: 1rem;         /* 16px */
+  color: var(--gris);
+}
+
+/* Los campos de texto. font: inherit es importante: sin eso,
+   los navegadores les ponen su propia tipografía y quedan
+   distintos al resto del sitio. */
+.campo input,
+.campo textarea {
+  font: inherit;
+  font-size: 1.25rem;      /* 20px */
+  color: var(--tinta);
+  background: var(--papel);
+  border: 1px solid #CFCFCF;
+  border-radius: 0.75rem;
+  padding: 0.9rem 1.25rem;
+  transition: border-color 0.18s;
+}
+
+.campo textarea {
+  resize: vertical;        /* se puede agrandar a lo alto, no a lo ancho */
+  min-height: 9rem;
+}
+
+/* :focus es cuando el campo está seleccionado. outline: none
+   apaga el recuadro feo del navegador, pero SOLO porque lo
+   reemplazamos por el borde rosa: nunca hay que quitarlo sin
+   poner otra señal, o quien navega con teclado se pierde. */
+.campo input:focus,
+.campo textarea:focus {
+  outline: none;
+  border-color: var(--rosa);
+}
+
+/* El botón de enviar. Es el mismo de la portada pero relleno,
+   porque acá es la acción principal de la página. */
+.boton-lleno {
+  align-self: flex-start;
+  border: 1.5px solid var(--rosa);
+  background: var(--rosa);
+  color: var(--papel);
+}
+
+.boton-lleno:hover {
+  background: var(--papel);
+  color: var(--rosa);
+}
+
+
+/* ------------------------------------------------------------
+   C3. LA LISTA DE ENLACES
+   Filas anchas separadas por líneas finas. Es el mismo recurso
+   que usan las tarjetas de Work y los puestos de About.
+   ------------------------------------------------------------ */
+.enlaces {
+  list-style: none;
+  padding: 0 var(--margen);
+}
+
+.enlaces li { border-top: 1px solid #E0E0E0; }
+
+.enlaces li:last-child { border-bottom: 1px solid #E0E0E0; }
+
+.enlaces a {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 2rem;
+  padding: 1.75rem 0;
+  font-size: 2rem;         /* 32px */
+  transition: padding-left 0.22s, color 0.22s;
+}
+
+/* Al pasar el mouse, el renglón se corre hacia adentro */
+.enlaces a:hover {
+  padding-left: 1.5rem;
+  color: var(--rosa);
+}
+
+.enlaces .dato {
+  font-size: 1.5rem;       /* 24px */
+  color: var(--gris);
+}
+
+.enlaces a:hover .dato { color: var(--rosa); }
+
+
+/* ============================================================
+   LA PÁGINA WRITING
+   ============================================================ */
+
+
+/* ------------------------------------------------------------
+   W-1. LA LISTA DE TEXTOS
+
+   A diferencia de Work, acá NO hay grilla de tarjetas. Un texto
+   no se elige por cómo se ve: se elige leyendo el título. Por
+   eso es una lista en una sola columna, angosta, igual que un
+   índice de revista.
+   ------------------------------------------------------------ */
+/* La lista ocupa todo el ancho, para que las líneas separadoras
+   crucen la página entera, como las de Work y About. El texto
+   de adentro sí va angosto: una línea muy larga cansa de leer. */
+.writing {
+  padding: 0 var(--margen);
+}
+
+.entrada {
+  display: block;
+  padding: 2.5rem 0;
+  border-bottom: 1px solid #E0E0E0;
+  transition: padding-left 0.22s;
+}
+
+.entrada:first-child { border-top: 1px solid #E0E0E0; }
+
+.entrada:hover { padding-left: 1.5rem; }
+
+.entrada-fecha {
+  font-size: 1rem;         /* 16px */
+  color: var(--gris);
+  margin-bottom: 0.5rem;
+}
+
+.entrada h2 {
+  max-width: 48rem;        /* el texto angosto, la línea ancha */
+  font-size: 2rem;         /* 32px */
+  font-weight: 500;
+  line-height: 1.25;
+  margin-bottom: 0.75rem;
+  transition: color 0.22s;
+}
+
+.entrada:hover h2 { color: var(--rosa); }
+
+.entrada-bajada {
+  font-size: 1.25rem;      /* 20px */
+  line-height: 1.5;
+  color: var(--gris);
+  max-width: 48rem;
+}
+
+
+/* ============================================================
+   LA PÁGINA DE UN PROYECTO
+   ============================================================ */
+
+
+/* ------------------------------------------------------------
+   P1. LA CABECERA
+   Título y descripción a la izquierda; fecha y etiquetas a la
+   derecha, alineadas arriba.
+   ------------------------------------------------------------ */
+.proyecto-cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8rem;
+  padding: 0 var(--margen);
+}
+
+/* La flecha de volver, encima del título */
+.volver {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.25rem;      /* 20px */
+  color: var(--gris);
+  margin-bottom: 1rem;
+  transition: color 0.2s, gap 0.2s;
+}
+
+.volver:hover {
+  color: var(--rosa);
+  gap: 0.9rem;             /* la flecha se separa un poco */
+}
+
+.proyecto-titulo-grande {
+  font-size: 3rem;         /* 48px */
+  font-weight: 400;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+.proyecto-descripcion {
+  max-width: 46rem;
+  font-size: 1.25rem;      /* 20px */
+  line-height: 1.5;
+}
+
+/* La columna de la derecha */
+.proyecto-ficha {
+  flex-shrink: 0;
+  text-align: right;
+  padding-top: 2.5rem;     /* baja un poco, como en tu referencia */
+}
+
+.proyecto-fecha {
+  font-size: 1.25rem;
+  color: var(--gris);
+  margin-bottom: 1rem;
+}
+
+/* Las etiquetas en cápsulas */
+.proyecto-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  list-style: none;
+}
+
+.proyecto-tags li {
+  padding: 0.4rem 1.25rem;
+  border: 1px solid #CFCFCF;
+  border-radius: 2.5rem;
+  font-size: 1rem;         /* 16px */
+  color: var(--gris);
+}
+
+
+/* ------------------------------------------------------------
+   P2. LA GALERÍA DE IMÁGENES
+
+   ESTE ES EL SISTEMA. Lee esto una vez y después solo pegas
+   bloques.
+
+   La página se divide en 12 columnas invisibles. Cada imagen
+   dice cuántas ocupa, poniéndole una clase:
+
+     .ancha        las 12   → de lado a lado
+     .dos-tercios   8
+     .mitad         6       → dos de estas, una al lado de otra
+     .un-tercio     4       → tres de estas por fila
+
+   Si una imagen no lleva clase, ocupa media. Puedes mezclar
+   libremente: la fila se corta sola cuando se llenan las 12.
+
+   REGLA IMPORTANTE: las imágenes conservan su proporción real.
+   Si subes un empaque vertical, se ve vertical; no se recorta
+   para caber en un cuadrado. Por eso el mosaico queda irregular,
+   que es justo lo que lo hace ver bien y no un catálogo.
+   ------------------------------------------------------------ */
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 2.5rem;
+  padding: 0 var(--margen);
+  align-items: start;      /* cada imagen con su alto, sin estirarse */
+}
+
+.galeria figure { grid-column: span 6; }   /* el valor por defecto */
+
+.galeria .ancha       { grid-column: span 12; }
+.galeria .dos-tercios { grid-column: span 8; }
+.galeria .mitad       { grid-column: span 6; }
+.galeria .un-tercio   { grid-column: span 4; }
+
+.galeria img {
+  width: 100%;
+  height: auto;            /* el alto lo decide la imagen */
+  display: block;
+}
+
+/* El hueco gris mientras no hay imagen. Lleva una proporción
+   para que se vea algo; al poner la foto de verdad, sobra. */
+.hueco-imagen {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: var(--hueco);
+}
+
+.hueco-imagen.vertical { aspect-ratio: 3 / 4; }
+.hueco-imagen.cuadrado { aspect-ratio: 1 / 1; }
+.hueco-imagen.panorama { aspect-ratio: 16 / 9; }
+
+.galeria figcaption {
+  margin-top: 0.75rem;
+  font-size: 1rem;
+  color: var(--gris);
+}
+
+/* --- El patrón "una grande y dos apiladas al lado" ---
+   Es el de tu referencia, y no se puede armar solo con anchos:
+   hace falta decir que la de la izquierda vale por dos filas.
+   Esta clase lo resuelve. La columna de la derecha es un div
+   que contiene las dos chicas. */
+.galeria .columna-doble {
+  grid-column: span 4;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.galeria .columna-doble figure { grid-column: auto; }
+
+
+/* ------------------------------------------------------------
+   P3. LA NAVEGACIÓN ENTRE PROYECTOS
+   Va al final, antes del pie. Evita que el caso termine en un
+   callejón sin salida: el que llegó hasta abajo quiere ver otro.
+   ------------------------------------------------------------ */
+.nav-proyectos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem var(--margen);
+
+  /* Los márgenes negativos recortan las separaciones generales
+     del sitio, que acá quedaban enormes: 160px contra la última
+     imagen y 192px contra el pie. Esto es un cierre de página,
+     no una sección más, y pide ir apretado. */
+  margin-top: -7rem;       /* deja unos 48px con las imágenes */
+  margin-bottom: -10rem;   /* deja unos 32px con el pie */
+}
+
+.nav-proyectos a {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.5rem;       /* 24px */
+  transition: color 0.2s, gap 0.2s;
+}
+
+.nav-proyectos a:hover {
+  color: var(--rosa);
+  gap: 1.25rem;            /* la flecha se separa un poco */
+}
+
+/* El nombre del proyecto, debajo del "Next project" */
+.nav-proyectos .nombre {
+  display: block;
+  font-size: 1rem;
+  color: var(--gris);
+  margin-top: 0.25rem;
+}
+
+/* Cuando no hay proyecto anterior, este div vacío mantiene el
+   "Next project" pegado a la derecha */
+.nav-proyectos .vacio { flex: 1; }
+
+
+/* ------------------------------------------------------------
+   11. TABLET Y CELULAR
+
+   Por debajo de 1100px la escala proporcional dejaría el texto
+   demasiado chico para leer, así que a partir de acá el diseño
+   cambia de forma en vez de seguir achicándose:
+   el hero se apila, los bloques se ensanchan y los tamaños
+   vuelven a ser fijos.
+   ------------------------------------------------------------ */
+@media (max-width: 1100px) {
+
+  html { font-size: 16px; }    /* se corta la escala proporcional */
+
+  :root { --margen: 24px; }
+
+  .pagina { gap: 64px; }
+
+  .cuerpo { gap: 64px; }
+
+  .nav { height: auto; padding: 16px var(--margen); }
+
+  .nav-logo { font-size: 24px; line-height: 1.2; }
+
+  .nav-links { gap: 24px; }
+
+  .nav-links a { font-size: 16px; }
+
+  /* El hero se apila: primero el círculo, después el texto */
+  .hero {
+    flex-direction: column;
+    height: auto;
+    gap: 32px;
+    padding: 24px var(--margen) 0;
+  }
+
+  .hero-circulo { order: -1; width: 200px; height: 200px; }
+
+  .hero-izq { gap: 24px; width: 100%; }
+
+  .hero-texto { width: 100%; font-size: 24px; line-height: 32px; }
+
+  .marquee { height: 180px; }
+
+  .marquee-item { width: 180px; height: 180px; margin-right: 16px; }
+
+  /* El bloque de capacidades pasa a ocupar todo el ancho */
+  .capacidades { height: auto; justify-content: flex-start; }
+
+  .capacidades-bloque { width: 100%; gap: 20px; }
+
+  .rotulo { font-size: 16px; }
+
+  .capacidades p { font-size: 20px; line-height: 26px; }
+
+  .boton { height: 44px; font-size: 16px; padding: 8px 24px; }
+
+  .pie {
+    height: auto;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 24px var(--margen);
+  }
+
+  .pie a { font-size: 16px; }
+
+  .pie-redes { gap: 32px; }
+
+  /* ----- La página Work en pantalla angosta ----- */
+
+  /* La cabecera se apila: primero el titular, después el filtro */
+  .work-cabecera {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  .work-titular { font-size: 26px; max-width: none; margin-top: 12px; }
+
+  .filtros { gap: 16px; flex-wrap: wrap; }
+
+  .filtro-select,
+  .limpiar { font-size: 15px; }
+
+  .filtro-select { padding: 8px 40px 8px 18px; border-radius: 40px; }
+
+  /* De tres columnas a dos */
+  .grilla { grid-template-columns: repeat(2, 1fr); gap: 32px 16px; }
+
+  .pieza-titulo { font-size: 16px; }
+
+  .pieza-tags { font-size: 13px; }
+}
+
+
+/* En celular, una sola columna */
+@media (max-width: 600px) {
+  .grilla { grid-template-columns: 1fr; gap: 32px; }
+}
+
+
+/* ----- La página About en pantalla angosta ----- */
+@media (max-width: 1100px) {
+
+  /* El bloque de presentación se apila, con la foto primero */
+  .about-intro {
+    flex-direction: column;
+    gap: 28px;
+    padding-top: 24px;
+  }
+
+  .about-foto { order: -1; width: 180px; height: 180px; }
+
+  /* Los dos saludos, juntos otra vez */
+  .about-saludo,
+  .contacto-titular { font-size: 34px; margin-bottom: 16px; }
+
+  .about-texto p { font-size: 16px; margin-bottom: 16px; }
+
+  .titulo-seccion { font-size: 16px; margin-bottom: 24px; }
+
+  /* La línea de tiempo pasa de horizontal a vertical:
+     en una pantalla angosta no hay sitio para cuatro columnas. */
+  .timeline {
+    grid-auto-flow: row;
+    grid-auto-columns: auto;
+    gap: 24px;
+  }
+
+  .timeline::before { display: none; }
+
+  .puesto::before { width: 10px; height: 10px; }
+
+  .puesto-datos { padding-top: 0; padding-left: 24px; }
+
+  .puesto h3 { font-size: 17px; }
+
+  .puesto .fecha,
+  .puesto .rol { font-size: 14px; }
+
+  /* Las herramientas, en dos columnas y sin zigzag */
+  .tools {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    font-size: 15px;
+    text-align: left;
+  }
+
+  .tools li { transform: none !important; }
+
+
+  /* ----- La página Contact en pantalla angosta ----- */
+
+  .contacto-intro {
+    flex-direction: column;
+    gap: 32px;
+    padding-top: 24px;
+  }
+
+
+  .contacto-texto p { font-size: 16px; }
+
+  .formulario { width: 100%; gap: 16px; }
+
+  .campo input,
+  .campo textarea { font-size: 16px; border-radius: 10px; padding: 12px 14px; }
+
+  .enlaces a { font-size: 20px; padding: 18px 0; }
+
+  .enlaces .dato { font-size: 14px; }
+
+
+  /* ----- La página Writing en pantalla angosta ----- */
+
+  .writing { max-width: none; }
+
+  .entrada { padding: 24px 0; }
+
+  .entrada:hover { padding-left: 0; }   /* sin mouse no hace falta */
+
+  .entrada-fecha { font-size: 13px; }
+
+  .entrada h2 { font-size: 20px; }
+
+  .entrada-bajada { font-size: 15px; }
+
+
+  /* ----- La página de proyecto en pantalla angosta ----- */
+
+  .proyecto-cabecera {
+    flex-direction: column;
+    gap: 24px;
+    padding-top: 24px;
+  }
+
+  .proyecto-titulo-grande { font-size: 30px; margin-bottom: 12px; }
+
+  .proyecto-descripcion { font-size: 16px; max-width: none; }
+
+  /* La ficha pasa a la izquierda, debajo del texto */
+  .proyecto-ficha { text-align: left; padding-top: 0; }
+
+  .proyecto-tags { justify-content: flex-start; }
+
+  .proyecto-tags li { font-size: 13px; padding: 5px 14px; }
+
+  .proyecto-fecha { font-size: 15px; }
+
+  /* La galería pasa a una sola columna: en el celular todas las
+     imágenes se ven a todo el ancho, una debajo de otra. */
+  .galeria { grid-template-columns: 1fr; gap: 20px; }
+
+  .galeria figure,
+  .galeria .ancha,
+  .galeria .dos-tercios,
+  .galeria .mitad,
+  .galeria .un-tercio,
+  .galeria .columna-doble { grid-column: auto; }
+
+  .galeria .columna-doble { gap: 20px; }
+
+  .volver { font-size: 15px; margin-bottom: 8px; }
+
+  .nav-proyectos {
+    padding: 20px var(--margen);
+    margin-top: -40px;
+    margin-bottom: -44px;
+  }
+
+  .nav-proyectos a { font-size: 16px; }
+
+  .nav-proyectos .nombre { font-size: 13px; }
+}
+
+
+/* ------------------------------------------------------------
+   12. SI ALGUIEN PIDIÓ MENOS MOVIMIENTO
+
+   Hay gente a la que el movimiento constante le marea y lo
+   configura en su sistema operativo. Esto respeta ese ajuste:
+   el carrusel se queda quieto.
+   ------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-pista { animation: none; }
+  html { scroll-behavior: auto; }
+  * { transition-duration: 0.01ms !important; }
+}

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>skinBRO — Carlota Corzo</title>
+  <meta name="description" content="skinBRO, a masculine skincare kit designed to break stereotypes around skincare for young men. Branding and packaging by Carlota Corzo.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Mansalva&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body>
+
+<!-- ==============================================================
+     ESTA PÁGINA ES LA PLANTILLA DE UN PROYECTO.
+
+     Para hacer la de otro:
+     1. Duplica este archivo
+     2. Renómbralo: proyecto-voces.html, por ejemplo.
+        Sin tildes, sin espacios, sin mayúsculas
+     3. Cambia el texto y las imágenes
+     4. En work.html, pon ese nombre en el href de su tarjeta
+     5. Arregla los enlaces de "anterior" y "siguiente" de abajo
+     ============================================================== -->
+
+<div class="pagina">
+
+  <!-- ==========================================================
+       NAVEGACIÓN
+       "Work" queda marcado: estás dentro de un proyecto.
+       ========================================================== -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">Carlota Corzo</a>
+    <ul class="nav-links">
+      <li><a href="work.html" class="activo">Work</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="writing.html">Writing</a></li>
+    </ul>
+  </nav>
+
+
+  <main class="cuerpo">
+
+    <!-- ==========================================================
+         1. CABECERA
+         Título y descripción a la izquierda; fecha y etiquetas
+         a la derecha.
+         ========================================================== -->
+    <section class="proyecto-cabecera">
+
+      <div>
+        <a href="work.html" class="volver">&#8249; All work</a>
+        <h1 class="proyecto-titulo-grande">skinBRO</h1>
+        <p class="proyecto-descripcion">
+          skinBRO is a masculine skincare kit designed to break stereotypes
+          and tackle misinformation and hesitation among young men about
+          skincare routines. Created for beginners, it combines simplicity,
+          education, and a playful spirit to encourage healthy skincare
+          habits without shame or complexity.
+        </p>
+      </div>
+
+      <div class="proyecto-ficha">
+        <p class="proyecto-fecha">July 2025</p>
+        <ul class="proyecto-tags">
+          <li>Branding</li>
+          <li>Packaging</li>
+        </ul>
+      </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         2. LAS IMÁGENES
+
+         CÓMO FUNCIONA, en corto:
+         La página se divide en 12 columnas invisibles. Cada imagen
+         dice cuántas ocupa con una clase:
+
+           ancha        → las 12, de lado a lado
+           dos-tercios  → 8
+           mitad        → 6   (dos por fila)
+           un-tercio    → 4   (tres por fila)
+
+         Sin clase, ocupa media. La fila se corta sola al llenarse.
+         Puedes mezclar como quieras.
+
+         Las imágenes NO se recortan: cada una conserva su forma.
+         Un empaque vertical se ve vertical. Por eso el mosaico
+         queda irregular, que es lo que lo hace ver estudio y no
+         catálogo.
+
+         Los bloques grises son marcadores de posición. Cuando
+         tengas la foto, borra el <div class="hueco-imagen"> y
+         descomenta el <img> que está justo encima.
+         ========================================================== -->
+    <section class="galeria">
+
+      <!-- ---- El patrón de tu referencia: una grande a la
+           izquierda y dos apiladas a la derecha.
+           La grande ocupa 8 columnas; la columna de la derecha
+           es un bloque que contiene las dos chicas. ---- -->
+
+      <figure class="dos-tercios">
+        <!-- <img src="imagenes/skinbro-01.jpg" alt="El kit completo de skinBRO"> -->
+        <div class="hueco-imagen cuadrado"></div>
+      </figure>
+
+      <div class="columna-doble">
+        <figure>
+          <!-- <img src="imagenes/skinbro-02.jpg" alt="Describe qué se ve"> -->
+          <div class="hueco-imagen cuadrado"></div>
+        </figure>
+        <figure>
+          <!-- <img src="imagenes/skinbro-03.jpg" alt="Describe qué se ve"> -->
+          <div class="hueco-imagen cuadrado"></div>
+        </figure>
+      </div>
+
+      <!-- ---- Una a todo el ancho ---- -->
+      <figure class="ancha">
+        <!-- <img src="imagenes/skinbro-04.jpg" alt="Describe qué se ve"> -->
+        <div class="hueco-imagen panorama"></div>
+        <figcaption>
+          El pie de imagen es opcional. Sirve para decir algo que la
+          foto no dice sola. Si no aporta, mejor sin él.
+        </figcaption>
+      </figure>
+
+      <!-- ---- Dos iguales, una al lado de la otra ---- -->
+      <figure class="mitad">
+        <!-- <img src="imagenes/skinbro-05.jpg" alt="Describe qué se ve"> -->
+        <div class="hueco-imagen vertical"></div>
+      </figure>
+
+      <figure class="mitad">
+        <!-- <img src="imagenes/skinbro-06.jpg" alt="Describe qué se ve"> -->
+        <div class="hueco-imagen vertical"></div>
+      </figure>
+
+      <!-- ---- Tres en fila ---- -->
+      <figure class="un-tercio">
+        <div class="hueco-imagen cuadrado"></div>
+      </figure>
+      <figure class="un-tercio">
+        <div class="hueco-imagen cuadrado"></div>
+      </figure>
+      <figure class="un-tercio">
+        <div class="hueco-imagen cuadrado"></div>
+      </figure>
+
+      <!-- ⚠️ Pon el alt en TODAS las imágenes: es lo que escucha
+           alguien que usa lector de pantalla y lo que lee Google.
+           Una frase describiendo lo que se ve. -->
+
+    </section>
+
+
+    <!-- ==========================================================
+         3. NAVEGACIÓN ENTRE PROYECTOS
+
+         Va antes del pie. Evita que el caso termine en un callejón
+         sin salida: el que llegó hasta abajo quiere ver otro.
+
+         En cada proyecto hay que cambiar a mano a dónde apuntan
+         estos dos. Si es el primero, borra el bloque de anterior
+         y deja el <div class="vacio"> en su lugar.
+         ========================================================== -->
+    <nav class="nav-proyectos">
+
+      <a href="#">
+        <span>&#8249;</span>
+        <span>
+          Previous project
+          <span class="nombre">Voces de Guerra</span>
+        </span>
+      </a>
+
+      <a href="#">
+        <span>
+          Next project
+          <span class="nombre">Bad Bunny</span>
+        </span>
+        <span>&#8250;</span>
+      </a>
+
+    </nav>
+
+  </main>
+
+
+  <!-- ==========================================================
+       PIE DE PÁGINA
+       ========================================================== -->
+  <footer class="pie">
+    <a href="contact.html">Contact</a>
+    <ul class="pie-redes">
+      <li><a href="https://www.behance.net/" target="_blank" rel="noopener">Behance</a></li>
+      <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener">Linkedin</a></li>
+    </ul>
+  </footer>
+
+</div>
+
+</body>
+</html>

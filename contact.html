@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Contact — Carlota Corzo</title>
+  <meta name="description" content="Get in touch with Carlota Corzo, graphic designer specializing in UX/UI, based in Lima, Peru.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Mansalva&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body>
+
+<div class="pagina">
+
+  <!-- ==========================================================
+       NAVEGACIÓN
+       ========================================================== -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">Carlota Corzo</a>
+    <ul class="nav-links">
+      <li><a href="work.html">Work</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html" class="activo">Contact</a></li>
+      <li><a href="writing.html">Writing</a></li>
+    </ul>
+  </nav>
+
+
+  <main class="cuerpo">
+
+    <!-- ==========================================================
+         1. TITULAR Y FORMULARIO
+
+         ⚠️ EL FORMULARIO NO FUNCIONA TODAVÍA, y es normal.
+         Un formulario necesita algo del otro lado que reciba el
+         mensaje y te lo mande al correo. Eso lo pone Netlify
+         cuando publiquemos: el atributo data-netlify="true" que
+         está abajo es justo lo que se lo pide.
+
+         Mientras el sitio esté en tu computadora, el botón no
+         hace nada. En cuanto esté publicado, los mensajes te
+         llegan solos. No hay que cambiar nada más.
+         ========================================================== -->
+    <section class="contacto-intro">
+
+      <div class="contacto-texto">
+        <h1 class="contacto-titular">Let&rsquo;s talk.</h1>
+        <p>
+          Open to freelance projects and to full time roles in product,
+          brand and editorial design. Remote friendly, and I work in
+          English and Spanish.
+        </p>
+      </div>
+
+      <form class="formulario" name="contact" method="POST" data-netlify="true">
+
+        <!-- Este campo escondido es obligatorio para que Netlify
+             sepa de qué formulario viene el mensaje. No se ve. -->
+        <input type="hidden" name="form-name" value="contact">
+
+        <!-- Cada campo lleva su <label>. El "for" del label y el
+             "id" del input tienen que coincidir: eso es lo que
+             hace que al tocar el texto se active el campo, y lo
+             que permite que un lector de pantalla los relacione. -->
+        <div class="campo">
+          <label for="nombre">Your name</label>
+          <input type="text" id="nombre" name="name" required>
+        </div>
+
+        <div class="campo">
+          <label for="correo">Your email</label>
+          <input type="email" id="correo" name="email" required>
+        </div>
+        <!-- type="email" hace que el navegador avise si lo que
+             escriben no parece un correo, y en celular saca el
+             teclado con la arroba. -->
+
+        <div class="campo">
+          <label for="mensaje">What do you have in mind?</label>
+          <textarea id="mensaje" name="message" required></textarea>
+        </div>
+        <!-- required = el navegador no deja enviar si está vacío -->
+
+        <button type="submit" class="boton boton-lleno">Send</button>
+
+      </form>
+
+    </section>
+
+  </main>
+
+
+  <!-- ==========================================================
+       PIE DE PÁGINA
+       ========================================================== -->
+  <footer class="pie">
+    <a href="contact.html">Contact</a>
+    <ul class="pie-redes">
+      <li><a href="https://www.behance.net/" target="_blank" rel="noopener">Behance</a></li>
+      <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener">Linkedin</a></li>
+    </ul>
+  </footer>
+
+</div>
+
+</body>
+</html>

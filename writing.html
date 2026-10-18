@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Writing — Carlota Corzo</title>
+  <meta name="description" content="Notes on design, process and education, by Carlota Corzo.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Mansalva&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body>
+
+<div class="pagina">
+
+  <!-- ==========================================================
+       NAVEGACIÓN
+       ========================================================== -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">Carlota Corzo</a>
+    <ul class="nav-links">
+      <li><a href="work.html">Work</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="writing.html" class="activo">Writing</a></li>
+    </ul>
+  </nav>
+
+
+  <main class="cuerpo">
+
+    <!-- ==========================================================
+         1. CABECERA
+         Mismo molde que Work: rótulo chiquito y titular largo.
+         Acá no hay filtro, porque con pocos textos no hace falta.
+         ========================================================== -->
+    <section class="work-cabecera">
+      <div>
+        <p class="rotulo">Writing</p>
+        <h1 class="work-titular">
+          Notes on design, process and the things I keep thinking about.
+        </h1>
+      </div>
+    </section>
+
+
+    <!-- ==========================================================
+         2. LA LISTA DE TEXTOS
+
+         ⚠️ LA ENTRADA ES DE EJEMPLO. Está para que veas la forma;
+         el título sale de algo que ya tienes escrito en tu vault,
+         pero el texto no existe todavía.
+
+         CÓMO AGREGAR UNO:
+         Copia un bloque <a class="entrada"> entero, pégalo arriba
+         del todo (lo más nuevo va primero) y cambia la fecha, el
+         título, el resumen y el href.
+
+         La fecha se escribe dos veces: en el atributo datetime
+         va en formato año-mes-día, que es el que entienden Google
+         y los lectores de pantalla; dentro de la etiqueta va como
+         quieras que se lea.
+         ========================================================== -->
+    <section class="writing">
+
+      <a href="#" class="entrada">
+        <p class="entrada-fecha"><time datetime="2026-10-17">October 2026</time></p>
+        <h2>The mistakes I keep making, and the checklist I built to stop</h2>
+        <p class="entrada-bajada">
+          A running list of the craft errors I catch myself repeating,
+          and why writing them down works better than trying to remember.
+        </p>
+      </a>
+
+    </section>
+
+  </main>
+
+
+  <!-- ==========================================================
+       PIE DE PÁGINA
+       ========================================================== -->
+  <footer class="pie">
+    <a href="contact.html">Contact</a>
+    <ul class="pie-redes">
+      <li><a href="https://www.behance.net/" target="_blank" rel="noopener">Behance</a></li>
+      <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener">Linkedin</a></li>
+    </ul>
+  </footer>
+
+</div>
+
+</body>
+</html>

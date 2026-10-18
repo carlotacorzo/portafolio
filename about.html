@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>About — Carlota Corzo</title>
+  <meta name="description" content="Carlota Corzo is a graphic designer specializing in UX/UI, based in Lima, Peru. Interested in design for education and illustration.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Mansalva&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body>
+
+<div class="pagina">
+
+  <!-- ==========================================================
+       NAVEGACIÓN
+       ========================================================== -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">Carlota Corzo</a>
+    <ul class="nav-links">
+      <li><a href="work.html">Work</a></li>
+      <li><a href="about.html" class="activo">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="writing.html">Writing</a></li>
+    </ul>
+  </nav>
+
+
+  <main class="cuerpo">
+
+    <!-- ==========================================================
+         1. PRESENTACIÓN
+         Texto a la izquierda, tu foto en el círculo de la derecha.
+         ========================================================== -->
+    <section class="about-intro">
+
+      <div class="about-texto">
+
+        <h1 class="about-saludo">Hi, I&rsquo;m Carlota Corzo!</h1>
+        <!-- Es un <h1> y no un <p> por dos razones: es el
+             encabezado principal de la página, y además así no
+             le aplica la regla ".about-texto p", que es más
+             específica que ".about-saludo" y lo achicaba. -->
+
+        <p>
+          I&rsquo;m a graphic designer specializing in UX/UI, based in
+          Lima, Peru. I work across different design disciplines. What I
+          enjoy is observing details and designing solutions that make an
+          impact on people&rsquo;s lives.
+        </p>
+
+        <p>
+          I&rsquo;m particularly interested in design for education and
+          illustration, as a form of expression.
+        </p>
+
+      </div>
+
+      <div class="about-foto">
+        <!-- Cuando elijas la foto, descomenta esto:
+        <img src="imagenes/carlota.jpg" alt="Carlota Corzo">
+        Acá el alt SÍ lleva texto: es tu retrato, no decoración.
+        -->
+      </div>
+
+    </section>
+
+
+    <hr class="separador">
+
+
+    <!-- ==========================================================
+         2. EXPERIENCIA
+
+         ⚠️ El orden va de izquierda a derecha en el sentido del
+         tiempo: lo más antiguo primero, lo actual al final. En tu
+         Figma estaba al revés, y un eje horizontal se lee como que
+         el tiempo avanza hacia la derecha.
+
+         Y está agregado el freelance, que había desaparecido.
+         Con él puesto, tres prácticas en un mismo año dejan de
+         leerse como rotación.
+
+         Para agregar o quitar un puesto: copia o borra un bloque
+         <div class="puesto"> entero. La línea rosa y los puntos
+         se reacomodan solos.
+         ========================================================== -->
+    <section>
+      <h2 class="titulo-seccion">Experience</h2>
+
+      <div class="timeline">
+
+        <div class="puesto">
+          <div class="puesto-datos">
+            <h3>Freelance</h3>
+            <span class="fecha">2023 &ndash; Present</span>
+            <span class="rol">Graphic designer and illustrator</span>
+          </div>
+        </div>
+
+        <div class="puesto">
+          <div class="puesto-datos">
+            <h3>Grafic Store Agency</h3>
+            <span class="fecha">Jan 2026 &ndash; Apr 2026</span>
+            <span class="rol">Graphic designer</span>
+          </div>
+        </div>
+
+        <div class="puesto">
+          <div class="puesto-datos">
+            <h3>Skillshot Studio</h3>
+            <span class="fecha">May 2026 &ndash; Jun 2026</span>
+            <span class="rol">Graphic designer and illustrator</span>
+          </div>
+        </div>
+
+        <div class="puesto">
+          <div class="puesto-datos">
+            <h3>LVL Consulting</h3>
+            <span class="fecha">Jun 2026 &ndash; Present</span>
+            <span class="rol">UX/UI designer and illustrator</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <hr class="separador">
+
+
+    <!-- ==========================================================
+         3. HERRAMIENTAS
+         Seis, en dos filas desplazadas entre sí. El zigzag se
+         arma desde el CSS, no desde acá: en el HTML son una
+         lista normal y corriente.
+         ========================================================== -->
+    <section>
+      <h2 class="titulo-seccion">Tools</h2>
+
+      <ul class="tools">
+        <li>Adobe Creative Suite</li>
+        <li>Procreate / Illustration Softwares</li>
+        <li>Blender</li>
+        <li>Figma</li>
+        <li>Canva</li>
+        <li>Midjourney / AI tools</li>
+      </ul>
+    </section>
+
+  </main>
+
+
+  <!-- ==========================================================
+       PIE DE PÁGINA
+       ========================================================== -->
+  <footer class="pie">
+    <a href="contact.html">Contact</a>
+    <ul class="pie-redes">
+      <li><a href="https://www.behance.net/" target="_blank" rel="noopener">Behance</a></li>
+      <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener">Linkedin</a></li>
+    </ul>
+  </footer>
+
+</div>
+
+</body>
+</html>

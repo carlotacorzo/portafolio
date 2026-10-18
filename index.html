@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Hace que las tildes y las ñ se vean bien. No la borres. -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Hace que el sitio funcione en celular. Tampoco. -->
+
+  <title>Carlota Corzo — Graphic Designer specializing in UX/UI</title>
+
+  <meta name="description" content="Graphic designer specializing in UX/UI, based in Lima, Peru. Branding, editorial, packaging, motion and illustration.">
+
+  <!-- Las tipografías de tu Figma, desde Google Fonts.
+       Mansalva para tu nombre, Inter para todo lo demás. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Mansalva&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body>
+
+<div class="pagina">
+
+  <!-- ==========================================================
+       NAVEGACIÓN
+       Se repite igual en todas las páginas. Lo único que cambia
+       es en qué enlace va la clase "activo".
+       En la portada no lleva ninguno: el logo hace de Home.
+       ========================================================== -->
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">Carlota Corzo</a>
+    <ul class="nav-links">
+      <li><a href="work.html">Work</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="writing.html">Writing</a></li>
+    </ul>
+  </nav>
+
+
+  <main class="cuerpo">
+
+    <!-- ==========================================================
+         1. HERO
+         Texto a la izquierda, círculo a la derecha.
+         ========================================================== -->
+    <section class="hero">
+
+      <div class="hero-izq">
+
+        <p class="hero-texto">
+          I&rsquo;m a <strong>graphic designer</strong> specializing in
+          <strong class="acento">UX/UI.</strong>
+          I design things meant to make someone&rsquo;s life a little
+          <strong>easier.</strong>
+        </p>
+
+        <!-- El botón principal de la página. Va acá arriba y no
+             abajo porque es lo primero que alguien quiere hacer:
+             mirar el trabajo. El de "Start a project" viene
+             después, cuando ya lo vio. -->
+        <a href="work.html" class="boton">See my work<span class="flecha">&#8250;</span></a>
+
+      </div>
+      <!-- <strong> pone la negrita, la clase "acento" pinta de rosa,
+           y se pueden combinar, como en UX/UI.
+
+           &rsquo; es el apóstrofe curvo. El de la tecla (') es recto
+           y en tipografía se usa para pies y minutos, no para
+           contracciones. -->
+
+      <div class="hero-circulo">
+        <!-- Cuando elijas la ilustración, descomenta esto:
+        <img src="imagenes/ilustracion.png" alt="">
+        El alt va vacío a propósito: es decoración, no información.
+        -->
+      </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         2. EL MARQUEE
+         Los trabajos deslizándose en bucle.
+
+         ⚠️ La lista está escrita DOS VECES, idéntica. Así funciona
+         el truco (está explicado en el CSS, bloque 7).
+         Si agregas una pieza, agrégala EN LAS DOS COPIAS o el
+         bucle salta.
+         ========================================================== -->
+    <section class="marquee">
+      <div class="marquee-pista">
+
+        <!-- ----------- COPIA 1 ----------- -->
+        <a href="work.html" class="marquee-item">
+          <!-- <img src="imagenes/voces.jpg" alt="Voces de Guerra"> -->
+        </a>
+        <a href="proyecto-skinbro.html" class="marquee-item">
+          <!-- <img src="imagenes/skinbro.jpg" alt="SkinBro"> -->
+        </a>
+        <a href="work.html" class="marquee-item">
+          <!-- <img src="imagenes/badbunny.jpg" alt="Bad Bunny"> -->
+        </a>
+        <a href="work.html" class="marquee-item">
+          <!-- <img src="imagenes/musica.jpg" alt="Música y Educación"> -->
+        </a>
+        <a href="work.html" class="marquee-item">
+          <!-- <img src="imagenes/matcharoom.jpg" alt="MatchaRoom"> -->
+        </a>
+
+        <!-- ----------- COPIA 2, idéntica ----------- -->
+        <a href="work.html" class="marquee-item" aria-hidden="true" tabindex="-1">
+          <!-- <img src="imagenes/voces.jpg" alt=""> -->
+        </a>
+        <a href="work.html" class="marquee-item" aria-hidden="true" tabindex="-1">
+          <!-- <img src="imagenes/skinbro.jpg" alt=""> -->
+        </a>
+        <a href="work.html" class="marquee-item" aria-hidden="true" tabindex="-1">
+          <!-- <img src="imagenes/badbunny.jpg" alt=""> -->
+        </a>
+        <a href="work.html" class="marquee-item" aria-hidden="true" tabindex="-1">
+          <!-- <img src="imagenes/musica.jpg" alt=""> -->
+        </a>
+        <a href="work.html" class="marquee-item" aria-hidden="true" tabindex="-1">
+          <!-- <img src="imagenes/matcharoom.jpg" alt=""> -->
+        </a>
+        <!-- En la segunda copia el alt va vacío: es la misma imagen
+             repetida y no hace falta que un lector de pantalla la
+             lea dos veces. -->
+
+      </div>
+    </section>
+
+
+    <!-- ==========================================================
+         3. CAPABILITIES
+         Bloque pegado a la derecha, como en tu Figma.
+         ========================================================== -->
+    <section class="capacidades">
+      <div class="capacidades-bloque">
+
+        <p class="rotulo">Capabilities</p>
+
+        <div>
+          <p class="frase-1">
+            I work across UX/UI, branding, editorial, packaging,
+            motion and illustration.
+          </p>
+          <p>Have something good in mind?</p>
+        </div>
+
+        <a href="contact.html" class="boton">Start a project</a>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ==========================================================
+       PIE DE PÁGINA
+       ========================================================== -->
+  <footer class="pie">
+    <a href="contact.html">Contact</a>
+    <ul class="pie-redes">
+      <li><a href="https://www.behance.net/" target="_blank" rel="noopener">Behance</a></li>
+      <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener">Linkedin</a></li>
+    </ul>
+  </footer>
+  <!-- target="_blank" abre en pestaña nueva; rel="noopener" va con
+       él por seguridad.
+       OJO: los dos enlaces están a medias, falta tu usuario. -->
+
+</div>
+
+</body>
+</html>
