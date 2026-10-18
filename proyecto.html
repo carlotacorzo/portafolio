@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Project — Carlota Corzo</title>
+  <meta name="description" content="A project by Carlota Corzo, graphic designer specializing in UX/UI.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Mansalva&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body>
+
+<!-- ==============================================================
+     ESTA PÁGINA SIRVE PARA TODOS TUS PROYECTOS.
+
+     No hay un archivo por proyecto. Hay este, y cuál mostrar se
+     decide por la dirección:
+
+       proyecto.html?p=skinbro
+       proyecto.html?p=voces-de-guerra
+
+     Ese "?p=" es un parámetro: el JavaScript lo lee, busca ese
+     proyecto en datos/proyectos.json y arma la página.
+
+     POR QUÉ ASÍ: si cada proyecto tuviera su archivo, crear uno
+     nuevo desde el panel no alcanzaría, habría que crear también
+     su página a mano. Con esto el panel crea el proyecto y la
+     página aparece sola.
+
+     ⚠️ NO HAY QUE EDITAR ESTE ARCHIVO. Todo sale de los datos.
+     ============================================================== -->
+
+<div class="pagina">
+
+  <nav class="nav">
+    <a href="index.html" class="nav-logo">Carlota Corzo</a>
+    <ul class="nav-links">
+      <li><a href="work.html" class="activo">Work</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="writing.html">Writing</a></li>
+    </ul>
+  </nav>
+
+  <!-- Vacío a propósito: lo llena js/sitio.js -->
+  <main class="cuerpo" id="proyecto"></main>
+
+  <footer class="pie">
+    <a href="contact.html">Contact</a>
+    <ul class="pie-redes">
+      <li><a href="https://www.behance.net/" target="_blank" rel="noopener">Behance</a></li>
+      <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener">Linkedin</a></li>
+    </ul>
+  </footer>
+
+</div>
+
+<script src="js/sitio.js"></script>
+
+</body>
+</html>

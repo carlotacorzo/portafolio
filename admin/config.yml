@@ -1,0 +1,186 @@
+# ============================================================
+# LA CONFIGURACIÓN DE TU PANEL
+#
+# Este archivo le dice al panel qué puedes editar y qué campos
+# tiene cada cosa. Si algún día quieres un campo nuevo, se
+# agrega acá.
+#
+# El formato se llama YAML. La regla principal: la sangría
+# importa, y se hace con espacios, nunca con tabulador.
+# ============================================================
+
+
+# ---------- DÓNDE SE GUARDAN LOS CAMBIOS ----------
+# El panel no guarda en el sitio: guarda en tu repositorio de
+# GitHub. Netlify lo ve y vuelve a publicar solo.
+backend:
+  name: github
+  repo: carlotacorzo/portafolio
+  branch: main
+
+
+# Dónde se suben las imágenes que arrastres al panel
+media_folder: "imagenes"
+# Cómo se escriben en el HTML una vez subidas
+public_folder: "imagenes"
+
+# El panel en español
+locale: "es"
+
+
+collections:
+
+  # ==========================================================
+  # PROYECTOS
+  # ==========================================================
+  - name: "proyectos"
+    label: "Proyectos"
+    label_singular: "Proyecto"
+    file: "datos/proyectos.json"     # todos viven en un archivo
+    format: "json"
+    create: true
+    delete: true
+    files:
+      - name: "lista"
+        label: "Todos los proyectos"
+        file: "datos/proyectos.json"
+        fields:
+          - name: "proyectos"
+            label: "Proyectos"
+            label_singular: "Proyecto"
+            widget: "list"
+            # Lo que se ve en la lista antes de abrir cada uno
+            summary: "{{fields.titulo}} · {{fields.anio}}"
+            fields:
+
+              - name: "titulo"
+                label: "Título"
+                widget: "string"
+
+              - name: "id"
+                label: "Nombre en la dirección"
+                widget: "string"
+                hint: "Minúsculas y guiones, sin tildes ni espacios. Es lo que sale en la URL: proyecto.html?p=esto"
+
+              - name: "anio"
+                label: "Año"
+                widget: "number"
+                value_type: "int"
+                hint: "Solo el número. Es lo que ordena la grilla, de más nuevo a más viejo."
+
+              - name: "fecha"
+                label: "Fecha como se lee"
+                widget: "string"
+                required: false
+                hint: "Por ejemplo: July 2025. Se muestra junto al título."
+
+              - name: "etiquetas"
+                label: "Categorías"
+                widget: "select"
+                multiple: true
+                options:
+                  - { label: "UX/UI", value: "uxui" }
+                  - { label: "Branding", value: "branding" }
+                  - { label: "Editorial", value: "editorial" }
+                  - { label: "Packaging", value: "packaging" }
+                  - { label: "Motion", value: "motion" }
+                  - { label: "Illustration", value: "illustration" }
+
+              - name: "descripcion"
+                label: "Descripción"
+                widget: "text"
+                required: false
+                hint: "El párrafo que va arriba de la página del proyecto."
+
+              - name: "portada"
+                label: "Imagen de portada"
+                widget: "image"
+                required: false
+                hint: "La que se ve en la grilla de Work y en el carrusel."
+
+              - name: "visible"
+                label: "Visible en el sitio"
+                widget: "boolean"
+                default: true
+                hint: "Apágalo para esconderlo del público sin borrarlo."
+
+              - name: "imagenes"
+                label: "Imágenes del proyecto"
+                widget: "list"
+                required: false
+                summary: "{{fields.archivo}} · {{fields.ancho}}"
+                fields:
+                  - { name: "archivo", label: "Imagen", widget: "image" }
+                  - name: "ancho"
+                    label: "Qué tan ancha"
+                    widget: "select"
+                    default: "mitad"
+                    options:
+                      - { label: "Todo el ancho", value: "ancha" }
+                      - { label: "Dos tercios", value: "dos-tercios" }
+                      - { label: "Mitad", value: "mitad" }
+                      - { label: "Un tercio", value: "un-tercio" }
+                  - name: "alt"
+                    label: "Qué se ve en la imagen"
+                    widget: "string"
+                    required: false
+                    hint: "Una frase. Es lo que escucha quien usa lector de pantalla y lo que lee Google."
+                  - { name: "pie", label: "Pie de imagen", widget: "string", required: false }
+
+
+  # ==========================================================
+  # WRITING
+  # ==========================================================
+  - name: "writing"
+    label: "Writing"
+    label_singular: "Entrada"
+    files:
+      - name: "lista"
+        label: "Todas las entradas"
+        file: "datos/writing.json"
+        fields:
+          - name: "entradas"
+            label: "Entradas"
+            label_singular: "Entrada"
+            widget: "list"
+            summary: "{{fields.titulo}} · {{fields.fechaVisible}}"
+            fields:
+
+              - name: "titulo"
+                label: "Título"
+                widget: "string"
+
+              - name: "id"
+                label: "Nombre en la dirección"
+                widget: "string"
+                hint: "Minúsculas y guiones, sin tildes ni espacios."
+
+              - name: "fecha"
+                label: "Fecha"
+                widget: "datetime"
+                date_format: "YYYY-MM-DD"
+                time_format: false
+                format: "YYYY-MM-DD"
+                hint: "Es la que ordena la lista."
+
+              - name: "fechaVisible"
+                label: "Fecha como se lee"
+                widget: "string"
+                hint: "Por ejemplo: October 2026"
+
+              - name: "bajada"
+                label: "Resumen"
+                widget: "text"
+                hint: "Una o dos líneas. Es lo que de verdad decide si alguien entra a leer."
+
+              - name: "texto"
+                label: "El texto"
+                widget: "markdown"
+                required: false
+                hint: "Puedes escribirlo acá, o escribirlo en Obsidian y pegarlo."
+
+              - name: "visible"
+                label: "Publicada"
+                widget: "boolean"
+                default: false
+                hint: "Déjalo apagado mientras sea un borrador."

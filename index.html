@@ -91,47 +91,15 @@
          Si agregas una pieza, agrégala EN LAS DOS COPIAS o el
          bucle salta.
          ========================================================== -->
+    <!-- ==========================================================
+         EL MARQUEE
+         La pista está vacía a propósito: las piezas salen de
+         datos/proyectos.json y las arma js/sitio.js, en las dos
+         copias que necesita el bucle. Ya no hay que acordarse
+         de agregar nada dos veces.
+         ========================================================== -->
     <section class="marquee">
-      <div class="marquee-pista">
-
-        <!-- ----------- COPIA 1 ----------- -->
-        <a href="work.html" class="marquee-item">
-          <!-- <img src="imagenes/voces.jpg" alt="Voces de Guerra"> -->
-        </a>
-        <a href="proyecto-skinbro.html" class="marquee-item">
-          <!-- <img src="imagenes/skinbro.jpg" alt="SkinBro"> -->
-        </a>
-        <a href="work.html" class="marquee-item">
-          <!-- <img src="imagenes/badbunny.jpg" alt="Bad Bunny"> -->
-        </a>
-        <a href="work.html" class="marquee-item">
-          <!-- <img src="imagenes/musica.jpg" alt="Música y Educación"> -->
-        </a>
-        <a href="work.html" class="marquee-item">
-          <!-- <img src="imagenes/matcharoom.jpg" alt="MatchaRoom"> -->
-        </a>
-
-        <!-- ----------- COPIA 2, idéntica ----------- -->
-        <a href="work.html" class="marquee-item" aria-hidden="true" tabindex="-1">
-          <!-- <img src="imagenes/voces.jpg" alt=""> -->
-        </a>
-        <a href="work.html" class="marquee-item" aria-hidden="true" tabindex="-1">
-          <!-- <img src="imagenes/skinbro.jpg" alt=""> -->
-        </a>
-        <a href="work.html" class="marquee-item" aria-hidden="true" tabindex="-1">
-          <!-- <img src="imagenes/badbunny.jpg" alt=""> -->
-        </a>
-        <a href="work.html" class="marquee-item" aria-hidden="true" tabindex="-1">
-          <!-- <img src="imagenes/musica.jpg" alt=""> -->
-        </a>
-        <a href="work.html" class="marquee-item" aria-hidden="true" tabindex="-1">
-          <!-- <img src="imagenes/matcharoom.jpg" alt=""> -->
-        </a>
-        <!-- En la segunda copia el alt va vacío: es la misma imagen
-             repetida y no hace falta que un lector de pantalla la
-             lea dos veces. -->
-
-      </div>
+      <div class="marquee-pista" id="marquee-pista"></div>
     </section>
 
 
@@ -175,6 +143,8 @@
        OJO: los dos enlaces están a medias, falta tu usuario. -->
 
 </div>
+
+<script src="js/sitio.js"></script>
 
 </body>
 </html>

@@ -465,35 +465,63 @@ a {
   flex-shrink: 0;          /* que no se aplasten */
 }
 
-/* El desplegable. Los navegadores le ponen un estilo propio
-   bastante feo, así que lo apagamos con appearance: none y
-   dibujamos la flechita nosotros, con una imagen de fondo. */
+/* EL DESPLEGABLE, que son dos elementos y no uno.
+
+   ⚠️ Por qué: los navegadores tratan los <select> con reglas
+   propias y no sueltan el control del borde, por más que uno
+   se lo pida. Está comprobado en este sitio: el texto cambiaba
+   de color y el borde no.
+
+   La solución, que es la que usan todos los sistemas de diseño:
+   el borde, el redondeo y la flechita van en una CAJA alrededor,
+   y el <select> va transparente y sin borde por dentro. Así el
+   aspecto lo controlamos nosotros y el navegador solo se ocupa
+   de abrir la lista. */
+.filtro-caja {
+  position: relative;
+  display: inline-block;
+  border: 1px solid #CFCFCF;
+  border-radius: 2.5rem;   /* la cápsula */
+  background: var(--papel);
+  transition: border-color 0.18s;
+}
+
+.filtro-caja:hover { border-color: var(--rosa); }
+
+/* Cuando hay un filtro puesto, el control se pone rosa.
+   La clase la agrega el JavaScript. */
+.filtro-caja.activo { border-color: var(--rosa); }
+
+.filtro-caja.activo .filtro-select { color: var(--rosa); }
+
+/* La flechita, dibujada con un SVG dentro del propio CSS.
+   Va en la caja y no en el select, y pointer-events: none hace
+   que los clics la atraviesen y lleguen al desplegable. */
+.filtro-caja::after {
+  content: "";
+  position: absolute;
+  right: 1.5rem;
+  top: 50%;
+  width: 14px;
+  height: 9px;
+  margin-top: -4px;
+  pointer-events: none;
+  background: no-repeat center/contain
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9' fill='none'><path d='M1 1L7 7L13 1' stroke='%23333' stroke-width='1.6' stroke-linecap='round'/></svg>");
+}
+
 .filtro-select {
   appearance: none;
   -webkit-appearance: none;
   font-family: inherit;
   font-size: 1.5rem;       /* 24px */
   color: var(--tinta);
-  background-color: var(--papel);
-  border: 1px solid #CFCFCF;
-  border-radius: 2.5rem;   /* la cápsula */
+  background: transparent;
+  border: none;
+  outline: none;
   padding: 0.6rem 3.5rem 0.6rem 1.75rem;  /* el hueco de la derecha es para la flecha */
   cursor: pointer;
-
-  /* La flechita, dibujada como un SVG dentro del propio CSS */
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9' fill='none'><path d='M1 1L7 7L13 1' stroke='%23333' stroke-width='1.6' stroke-linecap='round'/></svg>");
-  background-repeat: no-repeat;
-  background-position: right 1.5rem center;
-  transition: border-color 0.18s;
-}
-
-.filtro-select:hover { border-color: var(--rosa); }
-
-/* Cuando hay un filtro puesto, el control se pone rosa.
-   La clase la agrega el JavaScript. */
-.filtro-select.activo {
-  border-color: var(--rosa);
-  color: var(--rosa);
+  transition: color 0.18s;
 }
 
 /* "Clear filters" es un botón, no un enlace: ejecuta una acción

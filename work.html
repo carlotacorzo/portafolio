@@ -18,11 +18,6 @@
 
 <div class="pagina">
 
-  <!-- ==========================================================
-       NAVEGACIÓN
-       Igual que en las demás páginas. Acá "Work" lleva la clase
-       "activo", que lo pinta de rosa.
-       ========================================================== -->
   <nav class="nav">
     <a href="index.html" class="nav-logo">Carlota Corzo</a>
     <ul class="nav-links">
@@ -36,10 +31,6 @@
 
   <main class="cuerpo">
 
-    <!-- ==========================================================
-         1. CABECERA
-         Rótulo y titular a la izquierda, filtro a la derecha.
-         ========================================================== -->
     <section class="work-cabecera">
 
       <div>
@@ -51,121 +42,43 @@
 
       <div class="filtros">
 
-        <!-- El desplegable. Cada <option> tiene un "value" que es
-             la etiqueta por la que se filtra. Ese value tiene que
-             coincidir EXACTO con lo que pongas en el data-tags de
-             las piezas, abajo. -->
-        <select class="filtro-select" id="filtro" aria-label="Filter by category">
-          <option value="">Filter by category</option>
-          <option value="uxui">UX/UI</option>
-          <option value="branding">Branding</option>
-          <option value="editorial">Editorial</option>
-          <option value="packaging">Packaging</option>
-          <option value="motion">Motion</option>
-          <option value="illustration">Illustration</option>
-        </select>
+        <!-- El desplegable va dentro de una caja: el borde y la
+             flechita son de la caja, no del select. Está
+             explicado en el CSS, en el bloque W2. -->
+        <div class="filtro-caja" id="filtro-caja">
+          <select class="filtro-select" id="filtro" aria-label="Filter by category">
+            <option value="">Filter by category</option>
+            <option value="uxui">UX/UI</option>
+            <option value="branding">Branding</option>
+            <option value="editorial">Editorial</option>
+            <option value="packaging">Packaging</option>
+            <option value="motion">Motion</option>
+            <option value="illustration">Illustration</option>
+          </select>
+        </div>
 
         <button class="limpiar" id="limpiar" type="button">Clear filters</button>
-
       </div>
+
     </section>
 
 
     <!-- ==========================================================
-         2. LA GRILLA
+         LA GRILLA
 
-         ⚠️ CÓMO AGREGAR UN PROYECTO
-         Copia un bloque entero, desde <a class="pieza"> hasta su
-         </a>, pégalo donde quieras que aparezca y cambia:
+         Está vacía a propósito. Las tarjetas ya NO se escriben
+         acá: salen de datos/proyectos.json y las arma js/sitio.js
+         cuando la página carga.
 
-           1. href        → a qué página lleva (o deja # por ahora)
-           2. data-tags   → las etiquetas, separadas por coma,
-                            SIN espacios y en minúscula. Tienen que
-                            coincidir con los value del desplegable
-           3. data-year   → el año, solo el número
-           4. el título y el año que se lee
-           5. los tags visibles (los de abajo, que sí llevan
-              mayúsculas y espacios: son para leer)
-           6. la imagen
-
-         Las etiquetas de arriba son para la máquina; las de abajo
-         son para la gente. Por eso están dos veces. Lo mismo con
-         el año: el data-year ordena, el del título se lee.
-
-         El orden en que escribas las piezas acá NO importa: la
-         página las reordena sola de más nueva a más vieja, según
-         el data-year.
-
-         ⚠️ Los años dicen 2026 porque no los sé. Cámbialos en los
-         dos sitios y el orden se arregla solo.
+         Para agregar, editar, reordenar u ocultar un proyecto,
+         ahora se usa el panel. Nunca más hay que tocar este
+         archivo.
          ========================================================== -->
-    <section class="grilla" id="grilla">
-
-      <a href="#" class="pieza" data-year="2026" data-tags="editorial,illustration">
-        <div class="pieza-imagen">
-          <!-- <img src="imagenes/voces.jpg" alt="Voces de Guerra"> -->
-        </div>
-        <h2 class="pieza-titulo">Voces de Guerra • 2026</h2>
-        <p class="pieza-tags">Editorial, Illustration</p>
-      </a>
-
-      <a href="proyecto-skinbro.html" class="pieza" data-year="2025" data-tags="branding,packaging">
-        <div class="pieza-imagen">
-          <!-- <img src="imagenes/skinbro.jpg" alt="SkinBro"> -->
-        </div>
-        <h2 class="pieza-titulo">skinBRO • 2025</h2>
-        <p class="pieza-tags">Branding, Packaging</p>
-      </a>
-
-      <a href="#" class="pieza" data-year="2026" data-tags="motion,illustration">
-        <div class="pieza-imagen">
-          <!-- <img src="imagenes/badbunny.jpg" alt="Bad Bunny"> -->
-        </div>
-        <h2 class="pieza-titulo">Bad Bunny • 2026</h2>
-        <p class="pieza-tags">Motion, Illustration</p>
-      </a>
-
-      <a href="#" class="pieza" data-year="2026" data-tags="editorial">
-        <div class="pieza-imagen">
-          <!-- <img src="imagenes/musica.jpg" alt="Música y Educación"> -->
-        </div>
-        <h2 class="pieza-titulo">Música y Educación • 2026</h2>
-        <p class="pieza-tags">Editorial</p>
-      </a>
-
-      <a href="#" class="pieza" data-year="2026" data-tags="uxui">
-        <div class="pieza-imagen">
-          <!-- <img src="imagenes/matcharoom.jpg" alt="MatchaRoom"> -->
-        </div>
-        <h2 class="pieza-titulo">MatchaRoom • 2026</h2>
-        <p class="pieza-tags">UX/UI</p>
-      </a>
-
-      <a href="#" class="pieza" data-year="2026" data-tags="uxui,illustration">
-        <div class="pieza-imagen">
-          <!-- <img src="imagenes/clicksocial.jpg" alt="Click Social"> -->
-        </div>
-        <h2 class="pieza-titulo">Click Social • 2026</h2>
-        <p class="pieza-tags">UX/UI, Illustration</p>
-      </a>
-      <!-- Click Social es tu PFC. Entra cuando lo entregues en
-           diciembre; mientras tanto, si no lo quieres visible,
-           borra su bloque. -->
-
-      <!-- El aviso de "no hay nada con ese filtro". Empieza
-           escondido; el JavaScript lo muestra si hace falta. -->
-      <p class="sin-resultados" id="sin-resultados" style="display:none;">
-        No projects in this category yet.
-      </p>
-
-    </section>
+    <section class="grilla" id="grilla"></section>
 
   </main>
 
 
-  <!-- ==========================================================
-       PIE DE PÁGINA
-       ========================================================== -->
   <footer class="pie">
     <a href="contact.html">Contact</a>
     <ul class="pie-redes">
@@ -176,93 +89,7 @@
 
 </div>
 
-
-<!-- ==========================================================
-     EL FILTRO
-
-     Son veinte líneas y hacen una sola cosa: cuando eliges una
-     categoría, esconden las piezas que no la tienen.
-
-     Lo importante: NO se borra nada ni se vuelve a dibujar la
-     grilla. Las piezas siguen ahí, solo que las que no pasan el
-     filtro se ponen en display:none y las demás se reacomodan
-     solas. Por eso es instantáneo.
-     ========================================================== -->
-<script>
-  // Agarramos los elementos con los que vamos a trabajar
-  var grilla   = document.getElementById('grilla');
-  var filtro   = document.getElementById('filtro');
-  var limpiar  = document.getElementById('limpiar');
-  var piezas   = document.querySelectorAll('.pieza');
-  var vacio    = document.getElementById('sin-resultados');
-
-
-  /* ----------------------------------------------------------
-     ORDENAR POR FECHA, de la más nueva a la más vieja.
-     Corre una sola vez, al cargar la página.
-
-     No hace falta que escribas las piezas en orden: esto las
-     reacomoda según su data-year. Cuando le cambies el año a
-     una, se mueve sola al lugar que le toca.
-     ---------------------------------------------------------- */
-  function ordenarPorFecha() {
-    // querySelectorAll no devuelve un array de verdad, así que
-    // lo convertimos para poder usar sort()
-    var lista = Array.prototype.slice.call(piezas);
-
-    // b menos a = de mayor a menor. Al revés sería de menor a mayor.
-    lista.sort(function (a, b) {
-      return Number(b.dataset.year) - Number(a.dataset.year);
-    });
-
-    // appendChild sobre un elemento que YA está en la página no
-    // lo duplica: lo mueve al final. Así que recorrer la lista
-    // ordenada y mandarlos al final, uno por uno, los deja en orden.
-    lista.forEach(function (pieza) {
-      grilla.appendChild(pieza);
-    });
-
-    // Y el aviso de "no hay nada" tiene que quedar el último
-    grilla.appendChild(vacio);
-  }
-
-  ordenarPorFecha();
-
-  function aplicarFiltro() {
-    var elegida = filtro.value;   // "" si no hay nada elegido
-    var visibles = 0;
-
-    // Recorremos todas las piezas, una por una
-    piezas.forEach(function (pieza) {
-      // Leemos su atributo data-tags y lo partimos por las comas
-      var tags = pieza.dataset.tags.split(',');
-
-      // ¿Se muestra? Sí, si no hay filtro, o si tiene esa etiqueta
-      var pasa = (elegida === '') || tags.includes(elegida);
-
-      // classList.toggle con un segundo argumento: pone la clase
-      // si es true, la quita si es false
-      pieza.classList.toggle('oculta', !pasa);
-
-      if (pasa) visibles++;
-    });
-
-    // El aviso de vacío solo aparece si no quedó ninguna
-    vacio.style.display = (visibles === 0) ? 'block' : 'none';
-
-    // El desplegable se pone rosa cuando hay un filtro puesto
-    filtro.classList.toggle('activo', elegida !== '');
-  }
-
-  // Cuando cambia el desplegable, filtramos
-  filtro.addEventListener('change', aplicarFiltro);
-
-  // "Clear filters" lo devuelve a cero
-  limpiar.addEventListener('click', function () {
-    filtro.value = '';
-    aplicarFiltro();
-  });
-</script>
+<script src="js/sitio.js"></script>
 
 </body>
 </html>

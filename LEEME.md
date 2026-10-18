@@ -1,96 +1,86 @@
 # Portafolio de Carlota Corzo
 
-Sitio en HTML y CSS puros. Sin instalar nada, sin terminal, sin dependencias.
-Abres un archivo, lo editas, lo guardas, recargas el navegador y ya está.
+Sitio en HTML, CSS y un poco de JavaScript. Sin instalar nada, sin terminal.
 
 ---
 
-## 1. Qué es cada archivo
+## 1. Lo primero que tienes que saber
 
-| Archivo | Qué es |
-|---|---|
-| `index.html` | La portada |
-| `work.html` | El listado de todos los proyectos |
-| `about.html` | Sobre mí, skills, experiencia |
-| `contact.html` | Los enlaces de contacto |
-| `proyecto-artika.html` | La plantilla de un caso. Se duplica para cada proyecto nuevo |
-| `css/estilos.css` | Cómo se ve todo el sitio. Un solo archivo para las cuatro páginas |
-| `imagenes/` | Acá van todas las fotos |
+> ### Para agregar o editar un proyecto o una entrada, **no se tocan estos archivos**. Se usa el panel: `tusitio.com/admin`
+
+Los proyectos y las entradas de Writing ya no están escritos dentro del HTML. Viven en `datos/`, y el panel es lo que los edita.
+
+Este archivo es para cuando quieras tocar el **diseño**, no el contenido.
 
 ---
 
-## 2. Cómo trabajar
+## 2. Qué es cada archivo
 
-1. Abre la carpeta `D:\Portafolio` en **Visual Studio Code** (gratis, es el editor estándar).
-2. Edita el archivo que quieras.
-3. Guarda con `Ctrl+S`.
-4. Haz doble clic en `index.html` para verlo en el navegador. Recarga con `F5` cada vez que guardes.
-
-**Truco:** instala la extensión **Live Server** en VS Code. Clic derecho sobre `index.html`, "Open with Live Server", y el navegador se recarga solo cada vez que guardas. Deja de ser incómodo al instante.
+| Archivo | Qué es | ¿Lo tocas? |
+|---|---|---|
+| `datos/proyectos.json` | Tus proyectos | **No a mano**, usa el panel |
+| `datos/writing.json` | Tus entradas | **No a mano**, usa el panel |
+| `imagenes/` | Las fotos | El panel las sube acá solo |
+| `css/estilos.css` | Cómo se ve todo el sitio | Sí, si quieres cambiar el diseño |
+| `js/sitio.js` | Lee los datos y arma las páginas | No hace falta |
+| `index.html` | La portada | Solo para cambiar sus textos fijos |
+| `work.html` | El listado. La grilla la arma el JavaScript | Casi nunca |
+| `proyecto.html` | **Sirve para todos los proyectos.** Cuál se muestra lo decide la dirección | No |
+| `about.html` · `contact.html` | Textos fijos | Sí, para cambiar lo que dicen |
+| `writing.html` | La lista. La arma el JavaScript | Casi nunca |
+| `admin/config.yml` | Qué campos tiene el panel | Solo si quieres un campo nuevo |
 
 ---
 
-## 3. Las tres cosas que vas a hacer todo el tiempo
+## 3. Los dos números que controlan todo el diseño
 
-### 3.1. Agregar un proyecto al listado
+Están arriba del todo en `css/estilos.css`:
 
-En `work.html`, busca un bloque que empiece con `<a href=... class="proyecto">`. Cópialo entero (hasta su `</a>`), pégalo abajo y cambia:
-
-- el **href**: a qué página lleva
-- el **título** y la **categoría**
-- el **tono**: `tono-1` hasta `tono-6`, son los colores de relleno
-
-### 3.2. Poner una imagen de verdad
-
-Guarda la foto en `imagenes/`. Luego, en el bloque del proyecto, borra esta línea:
-
-```html
-<span class="sin-imagen">A</span>
+```css
+html { font-size: 12.8px; }   /* el tamaño de TODO el sitio */
+--margen: 200px;              /* el aire a los lados */
 ```
 
-y en su lugar pon:
+**El primero cambia todo junto** sin deformar nada: textos, círculo, carrusel, separaciones, botón. 16 sería el tamaño de tu Figma; 12.8 es el 80%, que es el que elegiste.
 
-```html
-<img src="imagenes/el-nombre-de-tu-archivo.jpg" alt="Describe qué se ve">
-```
-
-**Reglas de los nombres de archivo en la web:** minúsculas, sin tildes, sin ñ, sin espacios. En vez de espacios, guiones. `artika-packaging-01.jpg`, no `Artika Packaging 01.jpg`.
-
-**El `alt` no es opcional.** Es lo que escucha alguien que usa lector de pantalla y lo que lee Google. Una frase describiendo la imagen.
-
-### 3.3. Cambiar un color de todo el sitio
-
-En `css/estilos.css`, arriba del todo, está el bloque `:root`. Cambias el valor ahí y cambia en las cuatro páginas a la vez.
+Los colores están justo debajo, en el bloque de variables. Cambias el rosa ahí y cambia en las cinco páginas.
 
 ---
 
-## 4. Cómo hacerle su página a un proyecto
+## 4. Para ver cambios en tu computadora
 
-1. Copia `proyecto-artika.html` y pégalo en la misma carpeta.
-2. Renómbralo: `proyecto-voces.html`, por ejemplo.
-3. Cambia el texto de adentro.
-4. En `work.html`, en la tarjeta de ese proyecto, cambia `href="#"` por `href="proyecto-voces.html"`.
+⚠️ **Ya no sirve el doble clic.** El sitio ahora lee archivos de datos, y los navegadores no dejan que una página abierta desde el disco lea otros archivos del disco, por seguridad.
 
----
+**Qué hacer:** instala la extensión **Live Server** en Visual Studio Code. Clic derecho sobre `index.html`, "Open with Live Server", y listo. Además se recarga sola cada vez que guardas.
 
-## 5. Cómo publicarlo
-
-**Netlify Drop**, gratis y sin cuenta para probar:
-
-1. Entra a [app.netlify.com/drop](https://app.netlify.com/drop)
-2. Arrastra la carpeta `Portafolio` entera a la pantalla.
-3. En diez segundos te da una dirección pública.
-
-Te va a dar un nombre feo tipo `brave-panda-4821.netlify.app`. Se puede cambiar por `carlotacorzo.netlify.app` desde el panel, y más adelante conectarle un dominio propio.
-
-Para actualizar: vuelves a arrastrar la carpeta. (Cuando esto canse, se conecta con GitHub y se actualiza solo al guardar. Eso es para después.)
+Publicado en Netlify funciona siempre, sin nada de esto.
 
 ---
 
-## 6. Pendientes
+## 5. Cómo se publica un cambio
 
-- [ ] Completar los enlaces de Behance y LinkedIn (están a medias, falta el usuario)
-- [ ] Revisar la experiencia en `about.html`: las fechas y los cargos vienen del Wix viejo
-- [ ] Reemplazar el texto de relleno de `proyecto-artika.html`
-- [ ] Subir las imágenes reales
-- [ ] Decidir el dominio
+**Si editaste contenido desde el panel:** ya está. El panel guarda en GitHub y Netlify lo publica solo, en un minuto.
+
+**Si editaste el diseño en tu computadora:** hay que subir los archivos a GitHub. Netlify los ve y publica.
+
+---
+
+## 6. Las reglas de las imágenes
+
+- **2000 píxeles** de ancho máximo
+- **Menos de 500 KB** cada una
+- **JPG al 80%** de calidad
+- Nombres en **minúsculas, sin tildes, sin espacios**: `skinbro-packaging-01.jpg`
+- **Los videos no van acá.** Se suben a Vimeo y se incrustan
+
+El detalle de por qué está en el vault, en *Cómo preparar las imágenes para la web*.
+
+---
+
+## 7. Pendientes
+
+- [ ] Las imágenes de los proyectos
+- [ ] La ilustración del círculo de la portada y la foto del About
+- [ ] Completar los enlaces de Behance y LinkedIn, y el correo de Contact
+- [ ] Los años y las descripciones de los proyectos, desde el panel
+- [ ] Los tres textos de Writing

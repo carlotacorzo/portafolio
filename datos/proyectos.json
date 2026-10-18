@@ -1,0 +1,70 @@
+{
+  "proyectos": [
+    {
+      "id": "skinbro",
+      "titulo": "skinBRO",
+      "anio": 2025,
+      "fecha": "July 2025",
+      "etiquetas": ["branding", "packaging"],
+      "descripcion": "skinBRO is a masculine skincare kit designed to break stereotypes and tackle misinformation and hesitation among young men about skincare routines. Created for beginners, it combines simplicity, education, and a playful spirit to encourage healthy skincare habits without shame or complexity.",
+      "portada": "",
+      "visible": true,
+      "imagenes": []
+    },
+    {
+      "id": "voces-de-guerra",
+      "titulo": "Voces de Guerra",
+      "anio": 2026,
+      "fecha": "",
+      "etiquetas": ["editorial", "illustration"],
+      "descripcion": "",
+      "portada": "",
+      "visible": true,
+      "imagenes": []
+    },
+    {
+      "id": "bad-bunny",
+      "titulo": "Bad Bunny",
+      "anio": 2026,
+      "fecha": "",
+      "etiquetas": ["motion", "illustration"],
+      "descripcion": "",
+      "portada": "",
+      "visible": true,
+      "imagenes": []
+    },
+    {
+      "id": "musica-y-educacion",
+      "titulo": "Música y Educación",
+      "anio": 2026,
+      "fecha": "",
+      "etiquetas": ["editorial"],
+      "descripcion": "",
+      "portada": "",
+      "visible": true,
+      "imagenes": []
+    },
+    {
+      "id": "matcharoom",
+      "titulo": "MatchaRoom",
+      "anio": 2026,
+      "fecha": "",
+      "etiquetas": ["uxui"],
+      "descripcion": "",
+      "portada": "",
+      "visible": true,
+      "imagenes": []
+    },
+    {
+      "id": "click-social",
+      "titulo": "Click Social",
+      "anio": 2026,
+      "fecha": "",
+      "etiquetas": ["uxui", "illustration"],
+      "descripcion": "",
+      "portada": "",
+      "visible": false,
+      "imagenes": []
+    }
+  ]
+}
