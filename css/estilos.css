@@ -1392,6 +1392,246 @@ a {
 }
 
 
+/* ============================================================
+   LAS INTERACCIONES
+
+   Todo lo que se mueve al pasar el mouse o al bajar por la
+   página vive acá, junto, para poder ajustarlo de una vez.
+
+   Tres reglas que se siguieron en todo el bloque:
+
+   1. RÁPIDO. Entre 0.18 y 0.3 segundos. Más lento se siente
+      pesado, más rápido no se nota.
+
+   2. SUAVE AL FRENAR. La curva cubic-bezier que se repite
+      hace que el movimiento arranque rápido y frene despacio,
+      como las cosas de verdad. Es lo que lo hace sentir bien
+      y no robótico.
+
+   3. POCO. Dos o tres píxeles de movimiento bastan. Si se nota
+      que algo "saltó", es demasiado.
+   ============================================================ */
+
+
+/* La curva que se usa en todo. Guardada como variable para
+   cambiarla en un solo lugar si hace falta. */
+:root {
+  --curva: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+
+/* ------------------------------------------------------------
+   I1. LOS BOTONES
+   Se levantan y les crece una sombra, como si se despegaran
+   del papel. Al hacer clic bajan: eso da sensación de que
+   el botón se hunde.
+   ------------------------------------------------------------ */
+.boton {
+  transition: background 0.22s var(--curva),
+              color 0.22s var(--curva),
+              transform 0.22s var(--curva),
+              box-shadow 0.22s var(--curva);
+}
+
+.boton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0.5rem 1.25rem rgba(238, 88, 143, 0.28);
+}
+
+/* :active es el instante en que está presionado */
+.boton:active {
+  transform: translateY(-1px);
+  box-shadow: 0 0.2rem 0.6rem rgba(238, 88, 143, 0.22);
+}
+
+
+/* ------------------------------------------------------------
+   I2. LOS ENLACES DEL MENÚ
+   Un subrayado que crece desde la izquierda. No aparece de
+   golpe: se dibuja.
+   ------------------------------------------------------------ */
+.nav-links a {
+  position: relative;
+  padding-bottom: 0.25rem;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1.5px;
+  width: 100%;
+  background: var(--rosa);
+
+  /* scaleX(0) = invisible porque mide cero de ancho.
+     transform-origin: left = crece desde la izquierda. */
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.28s var(--curva);
+}
+
+.nav-links a:hover::after,
+.nav-links a.activo::after {
+  transform: scaleX(1);
+}
+
+
+/* ------------------------------------------------------------
+   I3. EL LOGO
+   Apenas crece. Es un guiño, no un salto.
+   ------------------------------------------------------------ */
+.nav-logo {
+  display: inline-block;
+  transition: transform 0.25s var(--curva), color 0.25s var(--curva);
+}
+
+.nav-logo:hover {
+  transform: scale(1.04);
+  color: var(--rosa);
+}
+
+
+/* ------------------------------------------------------------
+   I4. LAS TARJETAS DE WORK
+   La imagen se levanta, el título se pone rosa y la línea de
+   abajo también. Los tres cambios a la vez hacen que se sienta
+   una sola pieza y no tres cosas sueltas.
+   ------------------------------------------------------------ */
+.pieza-imagen {
+  transition: transform 0.3s var(--curva),
+              box-shadow 0.3s var(--curva);
+}
+
+.pieza:hover .pieza-imagen {
+  transform: translateY(-6px);
+  box-shadow: 0 0.9rem 2rem rgba(0, 0, 0, 0.1);
+}
+
+.pieza-titulo {
+  transition: color 0.25s var(--curva),
+              border-color 0.25s var(--curva);
+}
+
+.pieza:hover .pieza-titulo {
+  color: var(--rosa);
+  border-bottom-color: var(--rosa);
+}
+
+/* La imagen de adentro se agranda un poquito. Como el marco
+   tiene overflow hidden, el efecto es que la foto "respira"
+   dentro de su recuadro sin salirse. */
+.pieza-imagen img {
+  transition: transform 0.45s var(--curva);
+}
+
+.pieza:hover .pieza-imagen img {
+  transform: scale(1.04);
+}
+
+
+/* ------------------------------------------------------------
+   I5. LAS PIEZAS DEL CARRUSEL
+   Se levantan igual que las tarjetas. Y recuerda que el
+   carrusel entero se pausa al pasar el mouse.
+   ------------------------------------------------------------ */
+.marquee-item {
+  transition: transform 0.3s var(--curva),
+              box-shadow 0.3s var(--curva),
+              opacity 0.3s var(--curva);
+}
+
+.marquee-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0.9rem 2rem rgba(0, 0, 0, 0.12);
+  opacity: 1;
+}
+
+
+/* ------------------------------------------------------------
+   I6. LAS IMÁGENES DE UN PROYECTO
+   Apenas se aclaran. Suficiente para que se note que el cursor
+   está encima, sin convertirlo en un carnaval.
+   ------------------------------------------------------------ */
+.galeria figure {
+  transition: transform 0.3s var(--curva);
+}
+
+.galeria figure:hover { transform: translateY(-4px); }
+
+
+/* ------------------------------------------------------------
+   I7. LAS ETIQUETAS Y LOS CAMPOS
+   ------------------------------------------------------------ */
+.proyecto-tags li {
+  transition: border-color 0.22s var(--curva),
+              color 0.22s var(--curva);
+}
+
+.proyecto-tags li:hover {
+  border-color: var(--rosa);
+  color: var(--rosa);
+}
+
+/* El campo de un formulario crece un pelo al seleccionarlo */
+.campo input,
+.campo textarea {
+  transition: border-color 0.2s var(--curva),
+              box-shadow 0.2s var(--curva);
+}
+
+.campo input:focus,
+.campo textarea:focus {
+  box-shadow: 0 0 0 3px rgba(238, 88, 143, 0.12);
+}
+
+
+/* ------------------------------------------------------------
+   I8. LA PÁGINA APARECE AL CARGAR
+   Un desvanecido muy corto. No se percibe como animación:
+   se percibe como que la página "llegó" en vez de aparecer
+   de golpe.
+   ------------------------------------------------------------ */
+@keyframes aparecer {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.pagina { animation: aparecer 0.4s ease-out; }
+
+
+/* ------------------------------------------------------------
+   I9. APARECER AL BAJAR
+
+   Los bloques empiezan invisibles y un poco más abajo de su
+   sitio. Cuando entran en pantalla, el JavaScript les pone la
+   clase "visible" y suben hasta su lugar.
+
+   El JavaScript solo pone una clase; todo el movimiento es de
+   acá. Si se quita este bloque, el sitio sigue funcionando.
+   ------------------------------------------------------------ */
+.revelar {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s var(--curva),
+              transform 0.6s var(--curva);
+}
+
+.revelar.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Cuando hay varios hermanos, cada uno entra un pelín después
+   que el anterior. Eso es lo que hace que una grilla se sienta
+   viva en vez de aparecer en bloque. */
+.revelar:nth-child(2) { transition-delay: 0.06s; }
+.revelar:nth-child(3) { transition-delay: 0.12s; }
+.revelar:nth-child(4) { transition-delay: 0.18s; }
+.revelar:nth-child(5) { transition-delay: 0.24s; }
+.revelar:nth-child(6) { transition-delay: 0.3s; }
+
+
 /* ------------------------------------------------------------
    12. SI ALGUIEN PIDIÓ MENOS MOVIMIENTO
 
@@ -1402,5 +1642,24 @@ a {
 @media (prefers-reduced-motion: reduce) {
   .marquee-pista { animation: none; }
   html { scroll-behavior: auto; }
-  * { transition-duration: 0.01ms !important; }
+
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+
+  /* Los bloques que aparecen al bajar se muestran de una vez,
+     ya en su sitio. Si no, quien tiene esto activado vería
+     huecos vacíos que nunca se llenan. */
+  .revelar {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Y nada se levanta al pasar el mouse */
+  .boton:hover,
+  .pieza:hover .pieza-imagen,
+  .marquee-item:hover,
+  .galeria figure:hover,
+  .nav-logo:hover { transform: none; }
 }

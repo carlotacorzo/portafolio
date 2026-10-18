@@ -301,10 +301,65 @@ async function pintarWriting() {
 
 
 /* ------------------------------------------------------------
-   9. ARRANCAR
+   9. APARECER AL BAJAR
+
+   Los bloques entran suavemente cuando aparecen en pantalla.
+
+   CÓMO FUNCIONA, que es más simple de lo que parece:
+   El navegador tiene un vigilante incorporado, IntersectionObserver,
+   que avisa cuando un elemento entra en la pantalla. Nosotros le
+   damos la lista de qué vigilar, y cuando avisa, le ponemos al
+   elemento la clase "visible". El movimiento lo hace el CSS.
+
+   Lo importante: NO está escuchando el scroll todo el rato,
+   que es lo que hace lento un sitio. El navegador avisa solo
+   cuando pasa algo.
+   ------------------------------------------------------------ */
+function activarRevelado() {
+  // Si alguien pidió menos movimiento en su sistema, nada de esto
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  // Qué bloques se revelan
+  const candidatos = document.querySelectorAll(
+    '.hero-izq, .hero-circulo, .capacidades-bloque, .work-cabecera, ' +
+    '.pieza, .entrada, .about-texto, .about-foto, .timeline, .tools, ' +
+    '.contacto-texto, .formulario, .proyecto-cabecera, .galeria figure'
+  );
+
+  candidatos.forEach(el => el.classList.add('revelar'));
+
+  const vigilante = new IntersectionObserver((entradas) => {
+    entradas.forEach(entrada => {
+      if (entrada.isIntersecting) {
+        entrada.target.classList.add('visible');
+        // Una vez revelado, dejamos de vigilarlo: no hace falta
+        // que desaparezca al subir otra vez
+        vigilante.unobserve(entrada.target);
+      }
+    });
+  }, {
+    // Se dispara cuando asoma un 12% del elemento
+    threshold: 0.12,
+    // Y 80px antes de que llegue al borde, para que no se vea
+    // "aparecer" justo en el filo de la pantalla
+    rootMargin: '0px 0px -80px 0px'
+  });
+
+  candidatos.forEach(el => vigilante.observe(el));
+}
+
+
+/* ------------------------------------------------------------
+   10. ARRANCAR
    Se ejecutan todos; cada uno comprueba si le toca.
    ------------------------------------------------------------ */
-pintarGrilla();
-pintarCarrusel();
-pintarProyecto();
-pintarWriting();
+
+// Los que pintan contenido devuelven una promesa: hay que
+// esperarlos antes de revelar, porque si no las tarjetas de
+// Work todavía no existirían cuando el vigilante mire.
+Promise.all([
+  pintarGrilla(),
+  pintarCarrusel(),
+  pintarProyecto(),
+  pintarWriting()
+]).then(activarRevelado);
