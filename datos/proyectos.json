@@ -139,18 +139,18 @@
         },
         {
           "ancho": "mitad",
-          "archivo": "imagenes/202302_dg305_vg51_carlota-corzo_04.png"
-        },
-        {
-          "ancho": "ancha",
           "archivo": "imagenes/202302_dg305_vg51_carlota-corzo_05.png"
         },
         {
-          "ancho": "mitad",
+          "ancho": "un-tercio",
           "archivo": "imagenes/202302_dg305_vg51_carlota-corzo_03.png"
         },
         {
-          "ancho": "mitad",
+          "ancho": "un-tercio",
+          "archivo": "imagenes/202302_dg305_vg51_carlota-corzo_04.png"
+        },
+        {
+          "ancho": "un-tercio",
           "archivo": "imagenes/202302_dg305_vg51_carlota-corzo_02.png"
         }
       ],
