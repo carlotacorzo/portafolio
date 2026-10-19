@@ -1,70 +1,91 @@
 {
   "proyectos": [
     {
-      "id": "skinbro",
-      "titulo": "skinBRO",
-      "anio": 2025,
-      "fecha": "July 2025",
-      "etiquetas": ["branding", "packaging"],
+      "imagenes": [
+        {
+          "ancho": "ancha",
+          "archivo": "imagenes/dg309-202501_2248_corzo-carlota_imagen04.jpg"
+        }
+      ],
       "descripcion": "skinBRO is a masculine skincare kit designed to break stereotypes and tackle misinformation and hesitation among young men about skincare routines. Created for beginners, it combines simplicity, education, and a playful spirit to encourage healthy skincare habits without shame or complexity.",
-      "portada": "",
       "visible": true,
-      "imagenes": []
+      "anio": 2025,
+      "titulo": "skinBRO",
+      "id": "skinbro",
+      "portada": "imagenes/dg309-202501_2248_corzo-carlota_imagen01-1536x1536.jpg",
+      "fecha": "July 2025",
+      "etiquetas": [
+        "branding",
+        "packaging"
+      ]
     },
     {
-      "id": "voces-de-guerra",
+      "imagenes": [],
+      "descripcion": "",
+      "visible": true,
+      "anio": 2026,
       "titulo": "Voces de Guerra",
-      "anio": 2026,
-      "fecha": "",
-      "etiquetas": ["editorial", "illustration"],
-      "descripcion": "",
+      "id": "voces-de-guerra",
       "portada": "",
-      "visible": true,
-      "imagenes": []
+      "fecha": "",
+      "etiquetas": [
+        "editorial",
+        "illustration"
+      ]
     },
     {
-      "id": "bad-bunny",
+      "imagenes": [],
+      "descripcion": "",
+      "visible": true,
+      "anio": 2026,
       "titulo": "Bad Bunny",
-      "anio": 2026,
-      "fecha": "",
-      "etiquetas": ["motion", "illustration"],
-      "descripcion": "",
+      "id": "bad-bunny",
       "portada": "",
-      "visible": true,
-      "imagenes": []
+      "fecha": "",
+      "etiquetas": [
+        "motion",
+        "illustration"
+      ]
     },
     {
-      "id": "musica-y-educacion",
+      "imagenes": [],
+      "descripcion": "",
+      "visible": true,
+      "anio": 2026,
       "titulo": "Música y Educación",
-      "anio": 2026,
-      "fecha": "",
-      "etiquetas": ["editorial"],
-      "descripcion": "",
+      "id": "musica-y-educacion",
       "portada": "",
-      "visible": true,
-      "imagenes": []
+      "fecha": "",
+      "etiquetas": [
+        "editorial"
+      ]
     },
     {
-      "id": "matcharoom",
+      "imagenes": [],
+      "descripcion": "",
+      "visible": true,
+      "anio": 2026,
       "titulo": "MatchaRoom",
-      "anio": 2026,
-      "fecha": "",
-      "etiquetas": ["uxui"],
-      "descripcion": "",
+      "id": "matcharoom",
       "portada": "",
-      "visible": true,
-      "imagenes": []
+      "fecha": "",
+      "etiquetas": [
+        "uxui"
+      ]
     },
     {
-      "id": "click-social",
-      "titulo": "Click Social",
-      "anio": 2026,
-      "fecha": "",
-      "etiquetas": ["uxui", "illustration"],
+      "imagenes": [],
       "descripcion": "",
-      "portada": "",
       "visible": false,
-      "imagenes": []
+      "anio": 2026,
+      "titulo": "Click Social",
+      "id": "click-social",
+      "portada": "",
+      "fecha": "",
+      "etiquetas": [
+        "uxui",
+        "illustration"
+      ]
     }
   ]
 }
