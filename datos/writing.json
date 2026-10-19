@@ -1,13 +1,3 @@
 {
-  "entradas": [
-    {
-      "id": "ejemplo",
-      "titulo": "The mistakes I keep making, and the checklist I built to stop",
-      "fecha": "2026-10-17",
-      "fechaVisible": "October 2026",
-      "bajada": "A running list of the craft errors I catch myself repeating, and why writing them down works better than trying to remember.",
-      "texto": "",
-      "visible": true
-    }
-  ]
+  "entradas": []
 }
