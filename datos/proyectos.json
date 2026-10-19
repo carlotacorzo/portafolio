@@ -132,16 +132,38 @@
       ]
     },
     {
-      "imagenes": [],
-      "descripcion": "",
+      "imagenes": [
+        {
+          "ancho": "mitad",
+          "archivo": "imagenes/202302_dg305_vg51_carlota-corzo_01.png"
+        },
+        {
+          "ancho": "mitad",
+          "archivo": "imagenes/202302_dg305_vg51_carlota-corzo_04.png"
+        },
+        {
+          "ancho": "mitad",
+          "archivo": "imagenes/202302_dg305_vg51_carlota-corzo_05.png"
+        },
+        {
+          "ancho": "mitad",
+          "archivo": "imagenes/202302_dg305_vg51_carlota-corzo_03.png"
+        },
+        {
+          "ancho": "mitad",
+          "archivo": "imagenes/202302_dg305_vg51_carlota-corzo_02.png"
+        }
+      ],
+      "descripcion": "This project explores the positive impact of music in education and its role in the holistic development of children.\n\nMusic is presented as a pedagogical tool that enhances concentration, improves academic performance, and strengthens social skills. From conceptualization to layout design and illustration, each element aims to create an emotional connection with parents and educators, inspiring them to promote music education both in the classroom and at home.\n\nIllustrations created by me.",
       "visible": true,
-      "anio": 2026,
+      "anio": 2024,
       "titulo": "Música y Educación",
       "id": "musica-y-educacion",
-      "portada": "",
-      "fecha": "",
+      "portada": "imagenes/202302_dg305_vg51_carlota-corzo_01.png",
+      "fecha": "July 2024",
       "etiquetas": [
-        "editorial"
+        "editorial",
+        "illustration"
       ]
     },
     {
