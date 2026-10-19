@@ -50,39 +50,35 @@
     {
       "imagenes": [
         {
-          "ancho": "ancha",
+          "ancho": "dos-tercios",
           "archivo": "imagenes/202501_1adg0303_1986_carlota-corzo_01.jpg"
         },
         {
-          "ancho": "ancha",
-          "archivo": "imagenes/202501_1adg0303_1986_carlota-corzo_07.jpg"
+          "ancho": "mitad",
+          "archivo": "imagenes/202501_1adg0303_1986_carlota-corzo_02.jpg"
         },
         {
-          "ancho": "ancha",
-          "archivo": "imagenes/202501_1adg0303_1986_carlota-corzo_06.jpg"
+          "ancho": "mitad",
+          "archivo": "imagenes/202501_1adg0303_1986_carlota-corzo_03.jpg"
         },
         {
-          "ancho": "ancha",
+          "ancho": "mitad",
           "archivo": "imagenes/202501_1adg0303_1986_carlota-corzo_04.jpg"
         },
         {
-          "ancho": "ancha",
+          "ancho": "dos-tercios",
           "archivo": "imagenes/202501_1adg0303_1986_carlota-corzo_05.jpg"
         },
         {
-          "ancho": "ancha",
-          "archivo": "imagenes/202501_1adg0303_1986_carlota-corzo_14.jpg"
+          "ancho": "dos-tercios",
+          "archivo": "imagenes/202501_1adg0303_1986_carlota-corzo_06.jpg"
         },
         {
-          "ancho": "ancha",
-          "archivo": "imagenes/202501_1adg0303_1986_carlota-corzo_13.jpg"
+          "ancho": "un-tercio",
+          "archivo": "imagenes/202501_1adg0303_1986_carlota-corzo_07.jpg"
         },
         {
-          "ancho": "ancha",
-          "archivo": "imagenes/202501_1adg0303_1986_carlota-corzo_16.jpg"
-        },
-        {
-          "ancho": "ancha",
+          "ancho": "dos-tercios",
           "archivo": "imagenes/202501_1adg0303_1986_carlota-corzo_08.jpg"
         },
         {
@@ -90,16 +86,28 @@
           "archivo": "imagenes/202501_1adg0303_1986_carlota-corzo_09.jpg"
         },
         {
-          "ancho": "ancha",
-          "archivo": "imagenes/202501_1adg0303_1986_carlota-corzo_11.jpg"
-        },
-        {
-          "ancho": "ancha",
+          "ancho": "dos-tercios",
           "archivo": "imagenes/202501_1adg0303_1986_carlota-corzo_10.jpg"
         },
         {
           "ancho": "ancha",
+          "archivo": "imagenes/202501_1adg0303_1986_carlota-corzo_11.jpg"
+        },
+        {
+          "ancho": "mitad",
+          "archivo": "imagenes/202501_1adg0303_1986_carlota-corzo_13.jpg"
+        },
+        {
+          "ancho": "dos-tercios",
+          "archivo": "imagenes/202501_1adg0303_1986_carlota-corzo_14.jpg"
+        },
+        {
+          "ancho": "dos-tercios",
           "archivo": "imagenes/202501_1adg0303_1986_carlota-corzo_15.jpg"
+        },
+        {
+          "ancho": "dos-tercios",
+          "archivo": "imagenes/202501_1adg0303_1986_carlota-corzo_16.jpg"
         }
       ],
       "descripcion": "Voces de Guerra (Voices of War) is an interactive, illustrated book that revisits the War of the Pacific through an emotional, first-person perspective. Across four chapters narrated from the viewpoints of Bolognesi, Grau, Ugarte, and a rabona, the reader becomes a direct witness to the conflict, connecting with the emotions, decisions, and gestures of these historical figures.\n\nThe project blends visual and textual narratives to transform history into something vivid, tangible, and deeply human.\n\nIllustrations generated using AI (ChatGPT – GPT-4 model).",
