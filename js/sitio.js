@@ -301,7 +301,73 @@ async function pintarWriting() {
 
 
 /* ------------------------------------------------------------
-   9. APARECER AL BAJAR
+   9. LA PÁGINA DE UN TEXTO
+
+   Igual que la de proyecto: un solo archivo, texto.html, y
+   cuál mostrar lo decide la dirección (?t=el-id).
+
+   Lo distinto es que el texto que escribes en el panel está
+   en Markdown, que es el mismo formato de tus notas de
+   Obsidian: los ## son títulos, los ** son negritas. Acá se
+   convierte a HTML con una librería llamada marked, que se
+   carga solo en esta página.
+   ------------------------------------------------------------ */
+async function pintarTexto() {
+  const cont = document.getElementById('texto');
+  if (!cont) return;
+
+  const id = new URLSearchParams(location.search).get('t');
+
+  const respuesta = await fetch('datos/writing.json');
+  const todas = (await respuesta.json()).entradas;
+  const e = todas.find(x => x.id === id && x.visible);
+
+  if (!e) {
+    cont.innerHTML = `
+      <section class="texto-cabecera">
+        <a href="writing.html" class="volver">&#8249; All writing</a>
+        <h1 class="texto-titulo">Not found</h1>
+        <p class="texto-bajada">
+          This piece doesn&rsquo;t exist, or it isn&rsquo;t published yet.
+        </p>
+      </section>`;
+    return;
+  }
+
+  document.title = `${e.titulo} — Carlota Corzo`;
+
+  // Convertir el Markdown a HTML. Si la librería no cargó
+  // (sin internet, por ejemplo), al menos se muestra el texto
+  // plano en vez de no mostrar nada.
+  let cuerpo;
+  if (e.texto) {
+    cuerpo = window.marked
+      ? window.marked.parse(e.texto)
+      : `<p>${e.texto.replace(/\n\n/g, '</p><p>')}</p>`;
+  } else {
+    cuerpo = '<p class="texto-pendiente">Coming soon.</p>';
+  }
+
+  cont.innerHTML = `
+    <section class="texto-cabecera">
+      <a href="writing.html" class="volver">&#8249; All writing</a>
+      <p class="texto-fecha"><time datetime="${e.fecha}">${e.fechaVisible}</time></p>
+      <h1 class="texto-titulo">${e.titulo}</h1>
+      <p class="texto-bajada">${e.bajada}</p>
+    </section>
+
+    <article class="texto-cuerpo">${cuerpo}</article>
+
+    <nav class="nav-proyectos">
+      <a href="writing.html"><span>&#8249;</span><span>All writing</span></a>
+      <span></span>
+    </nav>
+  `;
+}
+
+
+/* ------------------------------------------------------------
+   10. APARECER AL BAJAR
 
    Los bloques entran suavemente cuando aparecen en pantalla.
 
@@ -350,7 +416,7 @@ function activarRevelado() {
 
 
 /* ------------------------------------------------------------
-   10. ARRANCAR
+   11. ARRANCAR
    Se ejecutan todos; cada uno comprueba si le toca.
    ------------------------------------------------------------ */
 
@@ -361,5 +427,6 @@ Promise.all([
   pintarGrilla(),
   pintarCarrusel(),
   pintarProyecto(),
-  pintarWriting()
+  pintarWriting(),
+  pintarTexto()
 ]).then(activarRevelado);

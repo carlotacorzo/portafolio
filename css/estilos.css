@@ -345,7 +345,10 @@ a {
   line-height: 1.8125rem;      /* 29px */
 }
 
-.capacidades p {
+/* :not(.rotulo) excluye al rótulo de esta regla. Sin eso,
+   ".capacidades p" le ganaba a ".rotulo" por ser más
+   específica y los dos salían del mismo tamaño. */
+.capacidades p:not(.rotulo) {
   font-size: 2rem;             /* 32px */
   line-height: 2.4375rem;      /* 39px */
 }
@@ -1209,7 +1212,7 @@ a {
 
   .rotulo { font-size: 16px; }
 
-  .capacidades p { font-size: 20px; line-height: 26px; }
+  .capacidades p:not(.rotulo) { font-size: 20px; line-height: 26px; }
 
   .boton { height: 44px; font-size: 16px; padding: 8px 24px; }
 
@@ -1344,6 +1347,37 @@ a {
   .entrada-bajada { font-size: 15px; }
 
 
+  /* ----- La página de un texto en pantalla angosta ----- */
+
+  .texto-cabecera,
+  .texto-cuerpo { max-width: none; }
+
+  .texto-titulo { font-size: 28px; margin-bottom: 12px; }
+
+  .texto-bajada { font-size: 17px; }
+
+  .texto-fecha { font-size: 13px; }
+
+  .texto-cuerpo { font-size: 17px; line-height: 1.65; }
+
+  .texto-cuerpo p { margin-bottom: 20px; }
+
+  .texto-cuerpo h2 { font-size: 21px; margin: 32px 0 12px; }
+
+  .texto-cuerpo h3 { font-size: 18px; margin: 24px 0 10px; }
+
+
+  /* ----- Las páginas de mensaje en pantalla angosta ----- */
+
+  .mensaje { min-height: 60vh; max-width: none; padding-top: 40px; }
+
+  .mensaje-numero { font-size: 64px; }
+
+  .mensaje h1 { font-size: 28px; }
+
+  .mensaje p { font-size: 16px; margin-bottom: 28px; }
+
+
   /* ----- La página de proyecto en pantalla angosta ----- */
 
   .proyecto-cabecera {
@@ -1389,6 +1423,160 @@ a {
   .nav-proyectos a { font-size: 16px; }
 
   .nav-proyectos .nombre { font-size: 13px; }
+}
+
+
+/* ============================================================
+   LA PÁGINA DE UN TEXTO
+
+   Acá manda una sola cosa: que se pueda leer cómodo. Por eso
+   la columna es angosta, el texto más grande que en el resto
+   del sitio y los renglones más separados.
+   ============================================================ */
+
+.texto-cabecera {
+  max-width: 54rem;
+  padding: 0 var(--margen);
+}
+
+.texto-fecha {
+  font-size: 1rem;         /* 16px */
+  color: var(--gris);
+  margin-bottom: 1rem;
+}
+
+.texto-titulo {
+  font-size: 3rem;         /* 48px */
+  font-weight: 500;
+  line-height: 1.15;
+  margin-bottom: 1.5rem;
+}
+
+.texto-bajada {
+  font-size: 1.5rem;       /* 24px */
+  line-height: 1.5;
+  color: var(--gris);
+}
+
+/* ------------------------------------------------------------
+   EL CUERPO DEL TEXTO
+
+   ⚠️ Estas reglas se aplican a lo que escribas en el panel.
+   Como ahí no pones clases, el CSS tiene que apuntar a las
+   etiquetas directamente: todos los párrafos, todos los
+   títulos, todas las listas que haya dentro de .texto-cuerpo.
+   ------------------------------------------------------------ */
+.texto-cuerpo {
+  max-width: 44rem;        /* unos 70 caracteres por línea */
+  padding: 0 var(--margen);
+  font-size: 1.375rem;     /* 22px, más grande que el resto */
+  line-height: 1.7;        /* renglones separados: se lee mejor */
+}
+
+.texto-cuerpo p { margin-bottom: 1.75rem; }
+
+.texto-cuerpo h2 {
+  font-size: 2rem;
+  font-weight: 500;
+  line-height: 1.25;
+  margin: 3.5rem 0 1.25rem;
+}
+
+.texto-cuerpo h3 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin: 2.5rem 0 1rem;
+}
+
+.texto-cuerpo ul,
+.texto-cuerpo ol {
+  margin: 0 0 1.75rem 1.5rem;
+}
+
+.texto-cuerpo li { margin-bottom: 0.6rem; }
+
+.texto-cuerpo strong { font-weight: 600; }
+
+/* Los enlaces dentro del texto sí van subrayados: en medio de
+   un párrafo, el color solo no basta para distinguirlos. */
+.texto-cuerpo a {
+  color: var(--rosa);
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+/* Una cita */
+.texto-cuerpo blockquote {
+  margin: 2.5rem 0;
+  padding-left: 1.75rem;
+  border-left: 2px solid var(--rosa);
+  color: var(--gris);
+}
+
+.texto-cuerpo img {
+  width: 100%;
+  height: auto;
+  margin: 2.5rem 0;
+}
+
+/* El aviso de que el texto todavía no está escrito */
+.texto-pendiente {
+  color: var(--gris);
+  font-style: italic;
+}
+
+
+/* ============================================================
+   LAS PÁGINAS DE MENSAJE
+   La de error y la de gracias. Las dos son lo mismo: un
+   mensaje corto en medio de la página y una salida clara.
+   ============================================================ */
+
+.mensaje {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 42rem;
+  padding: 0 var(--margen);
+  max-width: 50rem;
+}
+
+/* El número grande del 404. Va en Mansalva porque es el único
+   sitio donde un número puede tener gracia.
+
+   ⚠️ Es un <div> y no un <p> a propósito. Si fuera párrafo, la
+   regla ".mensaje p" de abajo le ganaría por ser más específica
+   y lo pintaría gris y chiquito. Ya pasó una vez con el saludo
+   del About: cuando un elemento con clase propia vive dentro de
+   un bloque que estiliza etiquetas sueltas, conviene que no sea
+   esa etiqueta. */
+.mensaje-numero {
+  font-family: 'Mansalva', cursive;
+  font-size: 7rem;
+  line-height: 1;
+  color: var(--rosa);
+  margin-bottom: 1rem;
+}
+
+.mensaje h1 {
+  font-size: 3rem;         /* 48px */
+  font-weight: 400;
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+}
+
+.mensaje p {
+  font-size: 1.5rem;       /* 24px */
+  line-height: 1.5;
+  color: var(--gris);
+  margin-bottom: 2.5rem;
+}
+
+.mensaje-acciones {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 
