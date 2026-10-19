@@ -50,7 +50,7 @@
     {
       "imagenes": [
         {
-          "ancho": "dos-tercios",
+          "ancho": "mitad",
           "archivo": "imagenes/202501_1adg0303_1986_carlota-corzo_01.jpg"
         },
         {
@@ -66,27 +66,27 @@
           "archivo": "imagenes/202501_1adg0303_1986_carlota-corzo_04.jpg"
         },
         {
-          "ancho": "dos-tercios",
+          "ancho": "mitad",
           "archivo": "imagenes/202501_1adg0303_1986_carlota-corzo_05.jpg"
         },
         {
-          "ancho": "dos-tercios",
+          "ancho": "mitad",
           "archivo": "imagenes/202501_1adg0303_1986_carlota-corzo_06.jpg"
         },
         {
-          "ancho": "un-tercio",
+          "ancho": "mitad",
           "archivo": "imagenes/202501_1adg0303_1986_carlota-corzo_07.jpg"
         },
         {
-          "ancho": "dos-tercios",
+          "ancho": "mitad",
           "archivo": "imagenes/202501_1adg0303_1986_carlota-corzo_08.jpg"
         },
         {
-          "ancho": "ancha",
+          "ancho": "mitad",
           "archivo": "imagenes/202501_1adg0303_1986_carlota-corzo_09.jpg"
         },
         {
-          "ancho": "dos-tercios",
+          "ancho": "mitad",
           "archivo": "imagenes/202501_1adg0303_1986_carlota-corzo_10.jpg"
         },
         {
@@ -98,15 +98,15 @@
           "archivo": "imagenes/202501_1adg0303_1986_carlota-corzo_13.jpg"
         },
         {
-          "ancho": "dos-tercios",
+          "ancho": "mitad",
           "archivo": "imagenes/202501_1adg0303_1986_carlota-corzo_14.jpg"
         },
         {
-          "ancho": "dos-tercios",
+          "ancho": "mitad",
           "archivo": "imagenes/202501_1adg0303_1986_carlota-corzo_15.jpg"
         },
         {
-          "ancho": "dos-tercios",
+          "ancho": "mitad",
           "archivo": "imagenes/202501_1adg0303_1986_carlota-corzo_16.jpg"
         }
       ],
